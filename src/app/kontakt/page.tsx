@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontaktujte nás s otázkami, návrhmi alebo pripomienkami k aplikácii Radary.SK.",
+    "Kontaktujte nás s otázkami, návrhmi alebo pripomienkami k aplikácii Radars-nine.vercel.app.",
 };
 
 export default function KontaktPage() {
@@ -37,10 +37,10 @@ export default function KontaktPage() {
                   Pre všeobecné otázky a podporu
                 </p>
                 <a
-                  href="mailto:info@radary.sk"
+                  href="mailto:roman.farki@gmail.com"
                   className="text-primary hover:underline font-medium"
                 >
-                  info@radary.sk
+                  roman.farki@gmail.com
                 </a>
               </CardContent>
             </Card>
@@ -57,10 +57,10 @@ export default function KontaktPage() {
                   Nahlásenie chyby alebo návrh na vylepšenie
                 </p>
                 <a
-                  href="mailto:feedback@radary.sk"
+                  href="mailto:roman.farki@gmail.com"
                   className="text-primary hover:underline font-medium"
                 >
-                  feedback@radary.sk
+                  roman.farki@gmail.com
                 </a>
               </CardContent>
             </Card>
@@ -102,7 +102,7 @@ export default function KontaktPage() {
 
           <div className="bg-muted/50 rounded-lg p-6 text-center space-y-2">
             <MapPin className="h-8 w-8 text-primary mx-auto" />
-            <h3 className="font-semibold">Radary.SK</h3>
+            <h3 className="font-semibold">Radars-nine.vercel.app</h3>
             <p className="text-sm text-muted-foreground">Slovensko</p>
           </div>
         </div>

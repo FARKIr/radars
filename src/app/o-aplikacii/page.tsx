@@ -4,7 +4,7 @@ import { MapPin, Radio, Filter, Navigation, Shield } from "lucide-react";
 export const metadata: Metadata = {
   title: "O aplikácii",
   description:
-    "Radary.SK - Komplexná aplikácia pre sledovanie radarov a meraní rýchlosti na Slovensku. Plánujte bezpečné cesty.",
+    "Radars-nine.vercel.app - Komplexná aplikácia pre sledovanie radarov a meraní rýchlosti na Slovensku. Plánujte bezpečné cesty.",
 };
 
 export default function OAplikaciiPage() {
@@ -14,7 +14,7 @@ export default function OAplikaciiPage() {
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold tracking-tight">
-              O aplikácii Radary.SK
+              O aplikácii Radars-nine.vercel.app
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Komplexná mapa radarov a meraní rýchlosti na Slovensku
@@ -25,13 +25,13 @@ export default function OAplikaciiPage() {
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold flex items-center gap-2">
                 <Radio className="h-6 w-6 text-destructive" />
-                Čo je Radary.SK?
+                Čo je Radars-nine.vercel.app?
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Radary.SK je moderná webová aplikácia určená pre vodičov na
-                Slovensku, ktorá poskytuje aktuálne informácie o umiestnení
-                radarov a meraní rýchlosti. Naším cieľom je pomôcť vodičom
-                plánovať bezpečné cesty a zvýšiť povedomie o dopravnej
+                Radars-nine.vercel.app je moderná webová aplikácia určená pre
+                vodičov na Slovensku, ktorá poskytuje aktuálne informácie o
+                umiestnení radarov a meraní rýchlosti. Naším cieľom je pomôcť
+                vodičom plánovať bezpečné cesty a zvýšiť povedomie o dopravnej
                 bezpečnosti.
               </p>
             </div>

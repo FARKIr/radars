@@ -47,98 +47,90 @@ export function FilterSidebar({
   };
 
   return (
-    <Card className="sticky top-24">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <Filter className="h-5 w-5" />
-          Filtre
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Vyhľadávanie</label>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Mesto, cesta..."
-              value={filtre.vyhladavanie}
-              onChange={(e) => onFiltreChange({ vyhladavanie: e.target.value })}
-              className="pl-10"
-            />
-          </div>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="space-y-2">
+        <label className="text-xs sm:text-sm font-medium">Vyhľadávanie</label>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+          <Input
+            placeholder="Mesto, cesta..."
+            value={filtre.vyhladavanie}
+            onChange={(e) => onFiltreChange({ vyhladavanie: e.target.value })}
+            className="pl-9 sm:pl-10 h-9 sm:h-10 text-sm"
+          />
         </div>
+      </div>
 
-        <Separator />
+      <Separator />
 
-        <div className="space-y-3">
-          <label className="text-sm font-medium">Región</label>
-          <div className="grid grid-cols-2 gap-2">
+      <div className="space-y-2 sm:space-y-3">
+        <label className="text-xs sm:text-sm font-medium">Región</label>
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+          <Badge
+            variant={filtre.region === "all" ? "default" : "outline"}
+            className="cursor-pointer justify-center text-xs sm:text-sm py-1.5 sm:py-2"
+            onClick={() => onFiltreChange({ region: "all" })}
+          >
+            Všetky
+          </Badge>
+          {Object.values(Region).map((region) => (
             <Badge
-              variant={filtre.region === "all" ? "default" : "outline"}
-              className="cursor-pointer justify-center text-xs"
-              onClick={() => onFiltreChange({ region: "all" })}
+              key={region}
+              variant={filtre.region === region ? "default" : "outline"}
+              className="cursor-pointer justify-center text-xs sm:text-sm py-1.5 sm:py-2"
+              onClick={() => onFiltreChange({ region })}
             >
-              Všetky
+              {REGION_LABELS[region]}
             </Badge>
-            {Object.values(Region).map((region) => (
-              <Badge
-                key={region}
-                variant={filtre.region === region ? "default" : "outline"}
-                className="cursor-pointer justify-center text-xs"
-                onClick={() => onFiltreChange({ region })}
-              >
-                {REGION_LABELS[region]}
-              </Badge>
-            ))}
-          </div>
+          ))}
         </div>
+      </div>
 
-        <Separator />
+      <Separator />
 
-        <div className="space-y-3">
-          <label className="text-sm font-medium">Typ merania</label>
-          <div className="space-y-2">
-            {Object.values(TypMerania).map((typ) => (
-              <Badge
-                key={typ}
-                className={`cursor-pointer justify-center text-xs ${
-                  filtre.typyMerania.includes(typ)
-                    ? `${TYP_COLORS[typ]} text-primary-foreground`
-                    : "bg-muted hover:bg-accent text-muted-foreground"
-                } transition-colors`}
-                onClick={() => toggleTypMerania(typ)}
-              >
-                {TYP_LABELS[typ]}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        <Separator />
-
-        <div className="space-y-3">
-          <label className="text-sm font-medium">Trieda cesty</label>
-          <div className="max-h-48 overflow-y-auto space-y-1.5 pr-2">
+      <div className="space-y-2 sm:space-y-3">
+        <label className="text-xs sm:text-sm font-medium">Typ merania</label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+          {Object.values(TypMerania).map((typ) => (
             <Badge
-              variant={filtre.triedaCesty === "all" ? "default" : "outline"}
-              className="cursor-pointer justify-center text-xs w-full"
-              onClick={() => onFiltreChange({ triedaCesty: "all" })}
+              key={typ}
+              className={`cursor-pointer justify-center text-xs sm:text-sm py-1.5 sm:py-2 ${
+                filtre.typyMerania.includes(typ)
+                  ? `${TYP_COLORS[typ]} text-primary-foreground`
+                  : "bg-muted hover:bg-accent text-muted-foreground"
+              } transition-colors`}
+              onClick={() => toggleTypMerania(typ)}
             >
-              Všetky
+              {TYP_LABELS[typ]}
             </Badge>
-            {triedyCiest.map((trieda) => (
-              <Badge
-                key={trieda}
-                variant={filtre.triedaCesty === trieda ? "default" : "outline"}
-                className="cursor-pointer justify-center text-xs w-full"
-                onClick={() => onFiltreChange({ triedaCesty: trieda })}
-              >
-                {trieda}
-              </Badge>
-            ))}
-          </div>
+          ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+
+      <Separator />
+
+      <div className="space-y-2 sm:space-y-3">
+        <label className="text-xs sm:text-sm font-medium">Trieda cesty</label>
+        <div className="max-h-40 sm:max-h-48 overflow-y-auto space-y-1.5 pr-1 sm:pr-2">
+          <Badge
+            variant={filtre.triedaCesty === "all" ? "default" : "outline"}
+            className="cursor-pointer justify-center text-xs sm:text-sm w-full py-1.5 sm:py-2"
+            onClick={() => onFiltreChange({ triedaCesty: "all" })}
+          >
+            Všetky
+          </Badge>
+          {triedyCiest.map((trieda) => (
+            <Badge
+              key={trieda}
+              variant={filtre.triedaCesty === trieda ? "default" : "outline"}
+              className="cursor-pointer justify-center text-xs sm:text-sm w-full py-1.5 sm:py-2"
+              onClick={() => onFiltreChange({ triedaCesty: trieda })}
+            >
+              {trieda}
+            </Badge>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

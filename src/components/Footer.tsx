@@ -20,28 +20,30 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="border-t bg-gradient-to-br from-background to-muted/30">
-      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div className="space-y-4">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 lg:px-8">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+          <div className="space-y-3 sm:space-y-4">
             <Logo size="md" showText={true} />
-            <p className="text-sm text-muted-foreground max-w-xs">
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xs">
               Komplexná mapa radarov a meraní rýchlosti na Slovensku. Plánujte
               trasu bezpečne a efektívne.
             </p>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+              <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span>Slovensko</span>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-4">Navigácia</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+              Navigácia
+            </h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.navigacia.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -51,13 +53,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-4">Informácie</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+              Informácie
+            </h3>
+            <ul className="space-y-2 sm:space-y-3">
               {footerLinks.informacie.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -66,7 +70,7 @@ export function Footer() {
             </ul>
             <div className="mt-6 flex gap-4">
               <a
-                href="mailto:info@radary.sk"
+                href="mailto:roman.farki@gmail.com"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Email"
               >
@@ -76,9 +80,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t pt-8">
-          <p className="text-sm text-muted-foreground text-center">
-            &copy; {new Date().getFullYear()} Radary.SK. Všetky práva vyhradené.
+        <div className="mt-8 sm:mt-12 border-t pt-6 sm:pt-8">
+          <p className="text-xs sm:text-sm text-muted-foreground text-center">
+            &copy; {new Date().getFullYear()} Radars-nine.vercel.app. Všetky
+            práva vyhradené.
           </p>
         </div>
       </div>

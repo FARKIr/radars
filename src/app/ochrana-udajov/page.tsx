@@ -3,7 +3,8 @@ import { Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Ochrana údajov",
-  description: "Zásady ochrany osobných údajov aplikácie Radary.SK.",
+  description:
+    "Zásady ochrany osobných údajov aplikácie Radars-nine.vercel.app.",
 };
 
 export default function OchranaUdajovPage() {
@@ -27,9 +28,9 @@ export default function OchranaUdajovPage() {
                 Aké údaje zhromažďujeme
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Aplikácia Radary.SK nezhromažďuje žiadne osobné údaje
-                používateľov. Všetky funkcie aplikácie fungujú lokálne vo vašom
-                prehliadači bez potreby registrácie alebo prihlásenia.
+                Aplikácia Radars-nine.vercel.app nezhromažďuje žiadne osobné
+                údaje používateľov. Všetky funkcie aplikácie fungujú lokálne vo
+                vašom prehliadači bez potreby registrácie alebo prihlásenia.
               </p>
             </div>
 
@@ -57,10 +58,10 @@ export default function OchranaUdajovPage() {
                 Ak máte otázky ohľadom ochrany osobných údajov, kontaktujte nás
                 na adrese{" "}
                 <a
-                  href="mailto:privacy@radary.sk"
+                  href="mailto:roman.farki@gmail.com"
                   className="text-primary hover:underline"
                 >
-                  privacy@radary.sk
+                  roman.farki@gmail.com
                 </a>
               </p>
             </div>

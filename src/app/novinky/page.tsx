@@ -6,16 +6,16 @@ import { Badge } from "@/components/ui/badge";
 export const metadata: Metadata = {
   title: "Novinky",
   description:
-    "Najnovšie aktualizácie, vylepšenia a novinky z aplikácie Radary.SK.",
+    "Najnovšie aktualizácie, vylepšenia a novinky z aplikácie Radars-nine.vercel.app.",
 };
 
 const novinky = [
   {
     date: "2026-01-03",
-    title: "Spustenie aplikácie Radary.SK",
+    title: "Spustenie aplikácie Radars-nine.vercel.app",
     category: "Nová funkcia",
     description:
-      "Oficiálne spustenie aplikácie Radary.SK s kompletnou mapou radarov na Slovensku. Aplikácia obsahuje interaktívnu mapu, plánovanie trás a pokročilé filtrovanie.",
+      "Oficiálne spustenie aplikácie Radars-nine.vercel.app s kompletnou mapou radarov na Slovensku. Aplikácia obsahuje interaktívnu mapu, plánovanie trás a pokročilé filtrovanie.",
     icon: Radio,
     color: "bg-destructive",
   },
@@ -49,7 +49,8 @@ export default function NovinkyPage() {
               Novinky a aktualizácie
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Sledujte najnovšie vylepšenia a funkcie aplikácie Radary.SK
+              Sledujte najnovšie vylepšenia a funkcie aplikácie
+              Radars-nine.vercel.app
             </p>
           </div>
 

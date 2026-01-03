@@ -3,7 +3,7 @@ import { FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pravidlá používania",
-  description: "Podmienky používania aplikácie Radary.SK.",
+  description: "Podmienky používania aplikácie Radars-nine.vercel.app.",
 };
 
 export default function PravidlaPage() {
@@ -17,7 +17,7 @@ export default function PravidlaPage() {
               Pravidlá používania
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Podmienky používania aplikácie Radary.SK
+              Podmienky používania aplikácie Radars-nine.vercel.app
             </p>
           </div>
 
@@ -25,9 +25,9 @@ export default function PravidlaPage() {
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold">Účel aplikácie</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Aplikácia Radary.SK slúži výhradne na informačné účely a jej
-                cieľom je zvýšiť povedomie o dodržiavaní dopravných predpisov a
-                bezpečnosti na cestách.
+                Aplikácia Radars-nine.vercel.app slúži výhradne na informačné
+                účely a jej cieľom je zvýšiť povedomie o dodržiavaní dopravných
+                predpisov a bezpečnosti na cestách.
               </p>
             </div>
 
@@ -74,10 +74,10 @@ export default function PravidlaPage() {
                 Pri otázkach týkajúcich sa podmienok používania nás kontaktujte
                 na{" "}
                 <a
-                  href="mailto:legal@radary.sk"
+                  href="mailto:roman.farki@gmail.com"
                   className="text-primary hover:underline"
                 >
-                  legal@radary.sk
+                  roman.farki@gmail.com
                 </a>
               </p>
             </div>
