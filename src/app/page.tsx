@@ -34,8 +34,8 @@ const MapaRadary = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full flex items-center justify-center bg-gray-100">
-        <div className="text-gray-500">Načítava sa mapa...</div>
+      <div className="w-full h-full flex items-center justify-center bg-muted">
+        <div className="text-muted-foreground">Načítava sa mapa...</div>
       </div>
     ),
   }

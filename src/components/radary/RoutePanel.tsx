@@ -5,7 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Navigation, MapPin, ArrowRight, X } from "lucide-react";
+import {
+  Navigation,
+  MapPin,
+  ArrowRight,
+  X,
+  AlertCircle,
+  Clock,
+  Route,
+} from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 interface RoutePanelProps {
   onRouteChange: (start: string | null, end: string | null) => void;
@@ -41,15 +50,15 @@ export function RoutePanel({
     <Card className="sticky top-24">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <Navigation className="h-5 w-5 text-blue-600" />
+          <Navigation className="h-5 w-5 text-primary" />
           Plánovanie trasy
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <div className="bg-green-100 p-2 rounded-lg shrink-0">
-              <MapPin className="h-4 w-4 text-green-600" />
+            <div className="bg-primary/10 p-2 rounded-lg shrink-0">
+              <MapPin className="h-4 w-4 text-primary" />
             </div>
             <Input
               placeholder="Začiatočný bod (napr. Košice)"
@@ -60,12 +69,12 @@ export function RoutePanel({
           </div>
 
           <div className="flex items-center justify-center py-2">
-            <ArrowRight className="h-4 w-4 text-gray-400" />
+            <ArrowRight className="h-4 w-4 text-muted-foreground" />
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="bg-red-100 p-2 rounded-lg shrink-0">
-              <MapPin className="h-4 w-4 text-red-600" />
+            <div className="bg-destructive/10 p-2 rounded-lg shrink-0">
+              <MapPin className="h-4 w-4 text-destructive" />
             </div>
             <Input
               placeholder="Cieľový bod (napr. Bratislava)"
@@ -94,29 +103,31 @@ export function RoutePanel({
         </div>
 
         {routeStart && routeEnd && (
-          <div className="pt-4 border-t space-y-3 bg-blue-50 rounded-lg p-4">
+          <div className="pt-4 border-t space-y-3 bg-muted rounded-lg p-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-blue-900">
+              <span className="text-sm font-medium text-foreground">
                 Aktívna trasa:
               </span>
-              <Badge className="bg-green-500 text-white text-xs">Aktívna</Badge>
+              <Badge className="bg-primary text-primary-foreground text-xs">
+                Aktívna
+              </Badge>
             </div>
-            <div className="flex items-center gap-2 text-sm font-medium text-blue-900">
+            <div className="flex items-center gap-2 text-sm font-medium text-foreground">
               <span className="truncate">{routeStart}</span>
               <ArrowRight className="h-3 w-3 shrink-0" />
               <span className="truncate">{routeEnd}</span>
             </div>
             {routeDistance !== undefined && routeDuration !== undefined && (
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-white rounded p-2">
-                  <div className="text-gray-500">Vzdialenosť</div>
-                  <div className="font-semibold text-blue-900">
+                <div className="bg-background rounded p-2">
+                  <div className="text-muted-foreground">Vzdialenosť</div>
+                  <div className="font-semibold text-foreground">
                     {(routeDistance / 1000).toFixed(1)} km
                   </div>
                 </div>
-                <div className="bg-white rounded p-2">
-                  <div className="text-gray-500">Čas jazdy</div>
-                  <div className="font-semibold text-blue-900">
+                <div className="bg-background rounded p-2">
+                  <div className="text-muted-foreground">Čas jazdy</div>
+                  <div className="font-semibold text-foreground">
                     {Math.round(routeDuration / 60)} min
                   </div>
                 </div>
@@ -134,26 +145,5 @@ export function RoutePanel({
         )}
       </CardContent>
     </Card>
-  );
-}
-
-function AlertCircle(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <line x1="12" x2="12" y1="8" y2="12" />
-      <line x1="12" x2="12.01" y1="16" y2="16" />
-    </svg>
   );
 }

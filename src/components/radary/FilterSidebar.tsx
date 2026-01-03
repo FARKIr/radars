@@ -28,10 +28,10 @@ const TYP_LABELS: Record<TypMerania, string> = {
 };
 
 const TYP_COLORS: Record<TypMerania, string> = {
-  [TypMerania.RYCHLOST]: "bg-blue-500",
+  [TypMerania.RYCHLOST]: "bg-primary",
   [TypMerania.SEMAFOR]: "bg-amber-500",
   [TypMerania.SEMAFOR_RYCHLOST]: "bg-purple-500",
-  [TypMerania.CERVENA]: "bg-red-500",
+  [TypMerania.CERVENA]: "bg-destructive",
 };
 
 export function FilterSidebar({
@@ -58,7 +58,7 @@ export function FilterSidebar({
         <div className="space-y-2">
           <label className="text-sm font-medium">Vyhľadávanie</label>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Mesto, cesta..."
               value={filtre.vyhladavanie}
@@ -101,10 +101,10 @@ export function FilterSidebar({
             {Object.values(TypMerania).map((typ) => (
               <Badge
                 key={typ}
-                className={`cursor-pointer justify-center text-white text-xs ${
+                className={`cursor-pointer justify-center text-xs ${
                   filtre.typyMerania.includes(typ)
-                    ? TYP_COLORS[typ]
-                    : "bg-gray-300 hover:bg-gray-400"
+                    ? `${TYP_COLORS[typ]} text-primary-foreground`
+                    : "bg-muted hover:bg-accent text-muted-foreground"
                 } transition-colors`}
                 onClick={() => toggleTypMerania(typ)}
               >

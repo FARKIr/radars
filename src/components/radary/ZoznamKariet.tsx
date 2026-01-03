@@ -11,10 +11,10 @@ interface ZoznamKarietProps {
 }
 
 const TYP_COLORS: Record<TypMerania, string> = {
-  [TypMerania.RYCHLOST]: "bg-blue-500",
+  [TypMerania.RYCHLOST]: "bg-primary",
   [TypMerania.SEMAFOR]: "bg-amber-500",
   [TypMerania.SEMAFOR_RYCHLOST]: "bg-purple-500",
-  [TypMerania.CERVENA]: "bg-red-500",
+  [TypMerania.CERVENA]: "bg-destructive",
 };
 
 const TYP_LABELS: Record<TypMerania, string> = {
@@ -55,7 +55,7 @@ export function ZoznamKariet({ data, onKartaClick }: ZoznamKarietProps) {
               <Badge
                 className={`${
                   TYP_COLORS[radar.typMerania]
-                } text-white shrink-0 text-[10px] sm:text-xs whitespace-nowrap`}
+                } text-primary-foreground shrink-0 text-[10px] sm:text-xs whitespace-nowrap`}
               >
                 {TYP_LABELS[radar.typMerania]}
               </Badge>

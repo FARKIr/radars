@@ -21,10 +21,10 @@ interface DetailRadaruProps {
 }
 
 const TYP_COLORS: Record<TypMerania, string> = {
-  [TypMerania.RYCHLOST]: "bg-blue-500",
+  [TypMerania.RYCHLOST]: "bg-primary",
   [TypMerania.SEMAFOR]: "bg-amber-500",
   [TypMerania.SEMAFOR_RYCHLOST]: "bg-purple-500",
-  [TypMerania.CERVENA]: "bg-red-500",
+  [TypMerania.CERVENA]: "bg-destructive",
 };
 
 const TYP_LABELS: Record<TypMerania, string> = {
@@ -136,7 +136,7 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
               <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
                 ID
               </p>
-              <p className="text-xs sm:text-base font-mono break-all bg-gray-50 p-2 rounded">
+              <p className="text-xs sm:text-base font-mono break-all bg-muted p-2 rounded">
                 {radar.id}
               </p>
             </div>
