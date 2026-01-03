@@ -14,6 +14,7 @@ import { FilterSidebar } from "@/components/radary/FilterSidebar";
 import { ZoznamKariet } from "@/components/radary/ZoznamKariet";
 import { DetailRadaru } from "@/components/radary/DetailRadaru";
 import { RadarZaznam } from "@/data/radary";
+import { MapPin } from "lucide-react";
 
 export default function Home() {
   const [filtre, setFiltre] = useState<FiltreStav>(INIT_FILTRE);
@@ -49,9 +50,9 @@ export default function Home() {
         visibleRadars={filtrovaneData.length}
       />
 
-      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
-          <aside className="lg:col-span-1 space-y-4 sm:space-y-6">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+          <aside className="xl:col-span-3 space-y-4 sm:space-y-6">
             <RoutePanel
               onRouteChange={handleRouteChange}
               routeStart={routeStart}
@@ -64,8 +65,8 @@ export default function Home() {
             />
           </aside>
 
-          <section className="lg:col-span-3 space-y-4 sm:space-y-6">
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden h-[300px] sm:h-[400px] md:h-[500px]">
+          <section className="xl:col-span-9 space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-lg shadow-card overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
               <GoogleMapRadary
                 data={filtrovaneData}
                 onMarkerClick={handleRadarClick}
@@ -74,10 +75,16 @@ export default function Home() {
               />
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
-              <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-900">
-                Radary na trase ({filtrovaneData.length})
-              </h2>
+            <div className="bg-white rounded-lg shadow-card p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 sm:mb-6">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">
+                  Radary na trase ({filtrovaneData.length})
+                </h2>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4" />
+                  <span>{filtrovaneData.length} lokalít</span>
+                </div>
+              </div>
               <ZoznamKariet
                 data={filtrovaneData}
                 onKartaClick={handleRadarClick}

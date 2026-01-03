@@ -3,6 +3,7 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -71,16 +72,19 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
               {TYP_LABELS[radar.typMerania]}
             </Badge>
           </DialogTitle>
+          <DialogDescription className="text-sm text-muted-foreground">
+            Detailné informácie o radarovom meraní
+          </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-3 sm:space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
                 Trieda cesty
               </p>
-              <div className="flex items-center gap-2 mt-1">
-                <Route className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+              <div className="flex items-center gap-2">
+                <Route className="h-4 w-4 text-muted-foreground" />
                 <p className="text-sm sm:text-base font-semibold">
                   {radar.triedaCesty}
                 </p>
@@ -88,10 +92,10 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
             </div>
 
             <div>
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
                 Cesta
               </p>
-              <p className="text-sm sm:text-base font-semibold mt-1">
+              <p className="text-sm sm:text-base font-semibold">
                 {radar.cesta}
               </p>
             </div>
@@ -100,26 +104,28 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
           <Separator />
 
           <div>
-            <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+            <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
               Lokalita
             </p>
-            <div className="flex items-start gap-2 mt-1">
-              <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground mt-0.5" />
-              <p className="text-sm sm:text-base">{radar.lokalita}</p>
+            <div className="flex items-start gap-2">
+              <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+              <p className="text-sm sm:text-base leading-relaxed">
+                {radar.lokalita}
+              </p>
             </div>
           </div>
 
           <Separator />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
                 Región
               </p>
-              <div className="mt-1">
+              <div>
                 <Badge
                   variant="outline"
-                  className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-0.5 sm:py-1"
+                  className="text-xs sm:text-sm md:text-base px-3 py-1"
                 >
                   {radar.region}
                 </Badge>
@@ -127,10 +133,10 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
             </div>
 
             <div>
-              <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
                 ID
               </p>
-              <p className="text-xs sm:text-base mt-1 font-mono break-all">
+              <p className="text-xs sm:text-base font-mono break-all bg-gray-50 p-2 rounded">
                 {radar.id}
               </p>
             </div>
@@ -139,35 +145,35 @@ Súradnice: ${radar.suradnice.lat}, ${radar.suradnice.lng}
           <Separator />
 
           <div>
-            <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-2">
+            <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-3">
               Súradnice GPS
             </p>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 shrink-0" />
-              <p className="text-xs sm:text-sm font-mono">
-                {radar.suradnice.lat.toFixed(4)},{" "}
-                {radar.suradnice.lng.toFixed(4)}
+            <div className="flex items-center gap-2 bg-blue-50 p-3 rounded-lg">
+              <MapPin className="h-4 w-4 text-blue-600 shrink-0" />
+              <p className="text-sm font-mono font-medium text-blue-900">
+                {radar.suradnice.lat.toFixed(6)},{" "}
+                {radar.suradnice.lng.toFixed(6)}
               </p>
             </div>
           </div>
 
           <Separator />
 
-          <div className="flex flex-col sm:flex-row gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
               onClick={kopirovatText}
               variant="outline"
-              className="flex-1 gap-2 text-xs sm:text-sm"
+              className="flex-1 gap-2 text-xs sm:text-sm h-10 sm:h-11"
             >
-              <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+              <Copy className="h-4 w-4" />
               Kopírovať text
             </Button>
             <Button
               onClick={kopirovatJSON}
               variant="outline"
-              className="flex-1 gap-2 text-xs sm:text-sm"
+              className="flex-1 gap-2 text-xs sm:text-sm h-10 sm:h-11"
             >
-              <FileJson className="h-3 w-3 sm:h-4 sm:w-4" />
+              <FileJson className="h-4 w-4" />
               Kopírovať JSON
             </Button>
           </div>

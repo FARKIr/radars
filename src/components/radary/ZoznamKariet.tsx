@@ -27,25 +27,29 @@ const TYP_LABELS: Record<TypMerania, string> = {
 export function ZoznamKariet({ data, onKartaClick }: ZoznamKarietProps) {
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-32 sm:h-40 md:h-64">
-        <p className="text-sm sm:text-base text-muted-foreground">
+      <div className="flex flex-col items-center justify-center h-40 sm:h-48 md:h-64 lg:h-80 p-8">
+        <MapPin className="h-12 w-12 text-muted-foreground mb-4" />
+        <p className="text-sm sm:text-base text-muted-foreground text-center">
           Žiadne výsledky
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 text-center">
+          Skúte upraviť filtre alebo vyhľadávanie
         </p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {data.map((radar) => (
         <Card
           key={radar.id}
-          className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+          className="cursor-pointer hover:shadow-card-hover transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] group"
           onClick={() => onKartaClick(radar)}
         >
           <CardHeader className="pb-2 sm:pb-3">
             <div className="flex items-start justify-between gap-2">
-              <CardTitle className="text-base sm:text-lg md:text-xl truncate">
+              <CardTitle className="text-base sm:text-lg truncate group-hover:text-primary transition-colors">
                 {radar.mesto}
               </CardTitle>
               <Badge
@@ -57,25 +61,28 @@ export function ZoznamKariet({ data, onKartaClick }: ZoznamKarietProps) {
               </Badge>
             </div>
           </CardHeader>
-          <CardContent className="space-y-1.5 sm:space-y-2">
-            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+          <CardContent className="space-y-2 sm:space-y-3">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
               <Route className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
               <span className="font-medium truncate">{radar.triedaCesty}</span>
-              <span className="text-muted-foreground">•</span>
+              <span className="text-muted-foreground shrink-0">•</span>
               <span className="text-muted-foreground truncate">
                 {radar.cesta}
               </span>
             </div>
-            <div className="flex items-start gap-1.5 sm:gap-2 text-xs sm:text-sm">
+            <div className="flex items-start gap-2 text-xs sm:text-sm">
               <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground shrink-0 mt-0.5" />
-              <span className="text-muted-foreground line-clamp-2">
+              <span className="text-muted-foreground line-clamp-2 leading-relaxed">
                 {radar.lokalita}
               </span>
             </div>
-            <div className="flex items-center gap-2 text-xs pt-1">
+            <div className="flex items-center justify-between pt-2">
               <Badge variant="outline" className="text-[10px] sm:text-xs">
                 {radar.region}
               </Badge>
+              <div className="text-xs text-muted-foreground">
+                ID: {radar.id.slice(-6)}
+              </div>
             </div>
           </CardContent>
         </Card>

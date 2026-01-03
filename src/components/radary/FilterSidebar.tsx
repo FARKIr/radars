@@ -47,9 +47,9 @@ export function FilterSidebar({
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+    <Card className="sticky top-24">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
           <Filter className="h-5 w-5" />
           Filtre
         </CardTitle>
@@ -72,19 +72,19 @@ export function FilterSidebar({
 
         <div className="space-y-3">
           <label className="text-sm font-medium">Región</label>
-          <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <Badge
               variant={filtre.region === "all" ? "default" : "outline"}
-              className="cursor-pointer w-full justify-center"
+              className="cursor-pointer justify-center text-xs"
               onClick={() => onFiltreChange({ region: "all" })}
             >
-              Všetky regióny
+              Všetky
             </Badge>
             {Object.values(Region).map((region) => (
               <Badge
                 key={region}
                 variant={filtre.region === region ? "default" : "outline"}
-                className="cursor-pointer w-full justify-center"
+                className="cursor-pointer justify-center text-xs"
                 onClick={() => onFiltreChange({ region })}
               >
                 {REGION_LABELS[region]}
@@ -101,11 +101,11 @@ export function FilterSidebar({
             {Object.values(TypMerania).map((typ) => (
               <Badge
                 key={typ}
-                className={`cursor-pointer w-full justify-center text-white ${
+                className={`cursor-pointer justify-center text-white text-xs ${
                   filtre.typyMerania.includes(typ)
                     ? TYP_COLORS[typ]
-                    : "bg-gray-300"
-                }`}
+                    : "bg-gray-300 hover:bg-gray-400"
+                } transition-colors`}
                 onClick={() => toggleTypMerania(typ)}
               >
                 {TYP_LABELS[typ]}
@@ -118,10 +118,10 @@ export function FilterSidebar({
 
         <div className="space-y-3">
           <label className="text-sm font-medium">Trieda cesty</label>
-          <div className="max-h-40 overflow-y-auto space-y-1">
+          <div className="max-h-48 overflow-y-auto space-y-1.5 pr-2">
             <Badge
               variant={filtre.triedaCesty === "all" ? "default" : "outline"}
-              className="cursor-pointer w-full justify-center text-xs"
+              className="cursor-pointer justify-center text-xs w-full"
               onClick={() => onFiltreChange({ triedaCesty: "all" })}
             >
               Všetky
@@ -130,7 +130,7 @@ export function FilterSidebar({
               <Badge
                 key={trieda}
                 variant={filtre.triedaCesty === trieda ? "default" : "outline"}
-                className="cursor-pointer w-full justify-center text-xs"
+                className="cursor-pointer justify-center text-xs w-full"
                 onClick={() => onFiltreChange({ triedaCesty: trieda })}
               >
                 {trieda}

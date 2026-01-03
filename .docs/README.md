@@ -1,0 +1,142 @@
+# Radary SK - Plánovanie trás s radarmi
+
+Moderná Next.js aplikácia s Google Maps pre plánovanie trás a zobrazenie radarov na Slovensku.
+
+## Technológie
+
+- **Next.js 14** (App Router)
+- **React 18** + **TypeScript**
+- **Tailwind CSS** - styling
+- **shadcn/ui** - moderné UI komponenty
+- **Google Maps API** (@react-google-maps/api) - interaktívna mapa
+- **Lucide React** - ikony
+- **Sonner** - notifikácie
+
+## Funkcie
+
+- ✅ **Google Maps integrácia** - plnohodnotná mapa s GPS súradnicami
+- ✅ **Route planning** - plánovanie trás medzi mestami (default: Košice → Bratislava)
+- ✅ **Zvýraznenie radarov na trase** - radary v blízkosti trasy sú zvýraznené
+- ✅ **Filtrovanie** - podľa regiónu, triedy cesty, typu merania
+- ✅ **Vyhľadávanie** - fulltext vyhľadávanie miest a lokalít
+- ✅ **Detailný pohľad** - GPS súradnice, kopírovanie údajov
+- ✅ **Moderný header** - prehľad zobrazených radarov
+- ✅ **Responzívny dizajn** - funguje na mobile aj desktop
+- ✅ 39 radarov s GPS súradnicami
+
+## Inštalácia a spustenie
+
+```bash
+# 1. Nainštalovať závislosti
+npm install
+
+# 2. Pridať Google Maps API kľúč do .env.local
+# NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
+
+# 3. Spustiť vývojový server
+npm run dev
+
+# Build pre produkciu
+npm run build
+
+# Spustiť produkčnú verziu
+npm start
+```
+
+Aplikácia bude dostupná na `http://localhost:3000`
+
+### Google Maps API kľúč
+
+Pre fungovanie mapy potrebujete Google Maps API kľúč:
+
+1. Vytvorte projekt na [Google Cloud Console](https://console.cloud.google.com)
+2. Aktivujte **Maps JavaScript API** a **Directions API**
+3. Vytvorte API kľúč
+4. Pridajte ho do `.env.local` súboru
+
+## Štruktúra projektu
+
+```
+src/
+├── app/
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Hlavná stránka s mapou
+│   └── globals.css        # Globálne štýly
+├── components/
+│   ├── ui/                # shadcn/ui komponenty
+│   └── radary/
+│       ├── GoogleMapRadary.tsx      # Google Maps komponenta
+│       ├── HeaderNavigation.tsx     # Header s prehľadom
+│       ├── RoutePanel.tsx           # Plánovanie trás
+│       ├── FilterSidebar.tsx        # Bočný panel filtrov
+│       ├── ZoznamKariet.tsx         # Zoznam radarov
+│       └── DetailRadaru.tsx         # Detail radaru
+├── data/
+│   └── radary.ts          # 39 radarov s GPS súradnicami
+└── lib/
+    ├── filtre.ts          # Filtrovacie funkcie
+    └── utils.ts           # Utility funkcie
+```
+
+## Dáta
+
+Aplikácia obsahuje **39 záznamov** radarov zo všetkých regiónov Slovenska:
+
+- **Západ**: 18 lokalít
+- **Stred**: 10 lokalít
+- **Východ**: 11 lokalít
+
+Typy meraní:
+
+- Rýchlosť
+- Semafor
+- Semafor + Rýchlosť
+- Červená na semafore
+
+## Použitie
+
+### Plánovanie trasy
+
+1. **Zadajte začiatočný bod** (napr. Košice) - default už nastavený
+2. **Zadajte cieľový bod** (napr. Bratislava) - default už nastavený
+3. **Kliknite "Plánovať trasu"** - mapa zobrazí trasu a zvýrazní radary v blízkosti
+4. **Radary na trase** - sú zvýraznené väčšími markermi s bielym obrysom
+
+### Navigácia na mape
+
+- **Zoom**: Koliesko myši alebo +/- tlačidlá
+- **Posúvanie**: Ťahajte mapu myšou
+- **Klik na marker**: Zobrazí detail radaru
+- **Marker farby**:
+  - 🔵 Modrá = Rýchlosť
+  - 🟠 Oranžová = Semafor
+  - 🟣 Fialová = Semafor + Rýchlosť
+  - 🔴 Červená = Červená na semafore
+
+### Filtrovanie
+
+1. **Vyhľadávanie**: Zadajte názov mesta alebo cesty v ľavom paneli
+2. **Región**: Kliknite na región (Západ/Stred/Východ)
+3. **Typ merania**: Vyberte typy, ktoré chcete vidieť
+4. **Trieda cesty**: Filtrujte podľa I/XX alebo II/XXX
+
+## Rozšírenie dát
+
+Pre pridanie nových záznamov upravte súbor `src/data/radary.ts`:
+
+```typescript
+{
+  id: "40",
+  mesto: "Nové Mesto",
+  triedaCesty: "I/XX",
+  cesta: "I/XX",
+  lokalita: "Popis lokality",
+  typMerania: TypMerania.RYCHLOST,
+  region: Region.ZAPAD,
+  suradnice: null
+}
+```
+
+## Licencia
+
+MIT

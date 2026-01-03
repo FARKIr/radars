@@ -42,9 +42,9 @@ export function RoutePanel({
       : 0;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+    <Card className="sticky top-24">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
           <Navigation className="h-5 w-5 text-blue-600" />
           Plánovanie trasy
         </CardTitle>
@@ -52,7 +52,9 @@ export function RoutePanel({
       <CardContent className="space-y-4">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-green-600 shrink-0" />
+            <div className="bg-green-100 p-2 rounded-lg shrink-0">
+              <MapPin className="h-4 w-4 text-green-600" />
+            </div>
             <Input
               placeholder="Začiatočný bod (napr. Košice)"
               value={startInput}
@@ -61,12 +63,14 @@ export function RoutePanel({
             />
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center py-2">
             <ArrowRight className="h-4 w-4 text-gray-400" />
           </div>
 
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-red-600 shrink-0" />
+            <div className="bg-red-100 p-2 rounded-lg shrink-0">
+              <MapPin className="h-4 w-4 text-red-600" />
+            </div>
             <Input
               placeholder="Cieľový bod (napr. Bratislava)"
               value={endInput}
@@ -83,7 +87,8 @@ export function RoutePanel({
             disabled={!startInput || !endInput}
           >
             <Navigation className="h-4 w-4 mr-2" />
-            Plánovať trasu
+            <span className="hidden sm:inline">Plánovať trasu</span>
+            <span className="sm:hidden">Plánovať</span>
           </Button>
           {(routeStart || routeEnd) && (
             <Button onClick={handleClearRoute} variant="outline" size="icon">
@@ -93,20 +98,24 @@ export function RoutePanel({
         </div>
 
         {routeStart && routeEnd && (
-          <div className="pt-3 border-t space-y-2">
+          <div className="pt-4 border-t space-y-3 bg-blue-50 rounded-lg p-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Aktívna trasa:</span>
-              <Badge className="bg-green-500 text-white">Aktívna</Badge>
+              <span className="text-sm font-medium text-blue-900">
+                Aktívna trasa:
+              </span>
+              <Badge className="bg-green-500 text-white text-xs">Aktívna</Badge>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="font-medium">{routeStart}</span>
-              <ArrowRight className="h-3 w-3 text-gray-400" />
-              <span className="font-medium">{routeEnd}</span>
+            <div className="flex items-center gap-2 text-sm font-medium text-blue-900">
+              <span className="truncate">{routeStart}</span>
+              <ArrowRight className="h-3 w-3 shrink-0" />
+              <span className="truncate">{routeEnd}</span>
             </div>
             {radarsOnRouteCount > 0 && (
-              <div className="flex items-center gap-2 text-sm text-amber-600">
-                <AlertCircle className="h-4 w-4" />
-                <span>~{radarsOnRouteCount} radarov v blízkosti trasy</span>
+              <div className="flex items-center gap-2 text-sm text-amber-700 bg-amber-50 rounded-lg p-2">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                <span className="text-xs">
+                  ~{radarsOnRouteCount} radarov v blízkosti trasy
+                </span>
               </div>
             )}
           </div>
