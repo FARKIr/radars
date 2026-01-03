@@ -31,7 +31,19 @@
   * {
     @apply border-border;
   }
+
+  html {
+    @apply h-full;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

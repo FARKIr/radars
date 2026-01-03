@@ -11,6 +11,11 @@ export enum Region {
   VYCHOD = "Východ",
 }
 
+export interface Suradnice {
+  lat: number;
+  lng: number;
+}
+
 export interface RadarZaznam {
   id: string;
   mesto: string;
@@ -19,7 +24,7 @@ export interface RadarZaznam {
   lokalita: string;
   typMerania: TypMerania;
   region: Region;
-  suradnice: null;
+  suradnice: Suradnice;
 }
 
 const CELKOVY_POCET_MIEST = 279;
@@ -91,7 +96,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Bajkalská × Trnavská cesta (semafor + rýchlosť)",
     typMerania: TypMerania.SEMAFOR_RYCHLOST,
     region: regionMapping["Bratislava"],
-    suradnice: null,
+    suradnice: { lat: 48.1707, lng: 17.1265 },
   },
   {
     id: "2",
@@ -101,7 +106,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Stará senecká cesta, nadchod pre chodcov (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Bratislava"],
-    suradnice: null,
+    suradnice: { lat: 48.1142, lng: 17.1545 },
   },
   {
     id: "3",
@@ -111,7 +116,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Križovatka Kačačince, smer Bratislava (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Svätý Jur"],
-    suradnice: null,
+    suradnice: { lat: 48.2539, lng: 17.2122 },
   },
   {
     id: "4",
@@ -121,7 +126,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Nábrežná komunikácia, oproti autobusovej stanici (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Banská Bystrica"],
-    suradnice: null,
+    suradnice: { lat: 48.7339, lng: 19.1453 },
   },
   {
     id: "5",
@@ -131,7 +136,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Bernolákova ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Žilina"],
-    suradnice: null,
+    suradnice: { lat: 49.2203, lng: 18.7394 },
   },
   {
     id: "6",
@@ -141,7 +146,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Časť Opatová, smer centrum (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Lučenec"],
-    suradnice: null,
+    suradnice: { lat: 48.3297, lng: 19.6653 },
   },
   {
     id: "7",
@@ -151,7 +156,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Ulica Pod Kalváriou, pri priechode pre chodcov (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Prešov"],
-    suradnice: null,
+    suradnice: { lat: 48.9985, lng: 21.2393 },
   },
   {
     id: "8",
@@ -161,7 +166,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Križovatka Hlinkova – Národná trieda (červená na semafore)",
     typMerania: TypMerania.CERVENA,
     region: regionMapping["Košice"],
-    suradnice: null,
+    suradnice: { lat: 48.7164, lng: 21.2611 },
   },
   {
     id: "9",
@@ -171,7 +176,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Ul. gen. M. R. Štefánika, pri Merine (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Trenčín"],
-    suradnice: null,
+    suradnice: { lat: 48.8946, lng: 18.0444 },
   },
   {
     id: "10",
@@ -181,7 +186,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Hlavný úsek cez obec (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Trnovec nad Váhom"],
-    suradnice: null,
+    suradnice: { lat: 48.3167, lng: 17.8667 },
   },
   {
     id: "11",
@@ -191,7 +196,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Hlavný ťah cez mesto (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Zlaté Moravce"],
-    suradnice: null,
+    suradnice: { lat: 48.3856, lng: 18.4022 },
   },
   {
     id: "12",
@@ -201,7 +206,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Levická ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Vráble"],
-    suradnice: null,
+    suradnice: { lat: 48.2442, lng: 18.3106 },
   },
   {
     id: "13",
@@ -211,7 +216,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Nitrianska ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Šaľa"],
-    suradnice: null,
+    suradnice: { lat: 48.1506, lng: 17.8794 },
   },
   {
     id: "14",
@@ -221,7 +226,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Úsek pri 98,5 km (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Komárno"],
-    suradnice: null,
+    suradnice: { lat: 47.7611, lng: 18.1289 },
   },
   {
     id: "15",
@@ -231,7 +236,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Ožďany – Čierna Lúka (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Rimavská Sobota"],
-    suradnice: null,
+    suradnice: { lat: 48.3833, lng: 20.0167 },
   },
   {
     id: "16",
@@ -241,7 +246,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od diaľnice D2 (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Malacky"],
-    suradnice: null,
+    suradnice: { lat: 48.4361, lng: 17.0219 },
   },
   {
     id: "17",
@@ -251,7 +256,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Hlavný ťah pri nákupnej zóne (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Dunajská Streda"],
-    suradnice: null,
+    suradnice: { lat: 47.9931, lng: 17.6169 },
   },
   {
     id: "18",
@@ -261,7 +266,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Obchvat mesta, križovatka s II/507 (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Galanta"],
-    suradnice: null,
+    suradnice: { lat: 48.1897, lng: 17.7283 },
   },
   {
     id: "19",
@@ -271,7 +276,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Trakovíc (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Hlohovec"],
-    suradnice: null,
+    suradnice: { lat: 48.4308, lng: 17.8047 },
   },
   {
     id: "20",
@@ -281,7 +286,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Žilinská cesta (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Piešťany"],
-    suradnice: null,
+    suradnice: { lat: 48.5925, lng: 17.8261 },
   },
   {
     id: "21",
@@ -291,7 +296,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Komárňanská cesta (semafor + rýchlosť)",
     typMerania: TypMerania.SEMAFOR_RYCHLOST,
     region: regionMapping["Nové Zámky"],
-    suradnice: null,
+    suradnice: { lat: 47.9856, lng: 18.1597 },
   },
   {
     id: "22",
@@ -301,7 +306,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Kalnická cesta (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Levice"],
-    suradnice: null,
+    suradnice: { lat: 48.2164, lng: 18.6061 },
   },
   {
     id: "23",
@@ -311,7 +316,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Beluše (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Púchov"],
-    suradnice: null,
+    suradnice: { lat: 49.1242, lng: 18.3258 },
   },
   {
     id: "24",
@@ -321,7 +326,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Centrum, pri hlavnej križovatke (semafor)",
     typMerania: TypMerania.SEMAFOR,
     region: regionMapping["Považská Bystrica"],
-    suradnice: null,
+    suradnice: { lat: 49.1208, lng: 18.4464 },
   },
   {
     id: "25",
@@ -331,7 +336,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Úsek pri vjazde od Vrútok (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Martin"],
-    suradnice: null,
+    suradnice: { lat: 49.0639, lng: 18.9214 },
   },
   {
     id: "26",
@@ -341,7 +346,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Nábrežie M. R. Štefánika (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Ružomberok"],
-    suradnice: null,
+    suradnice: { lat: 49.0739, lng: 19.3078 },
   },
   {
     id: "27",
@@ -351,7 +356,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Lučenecká cesta, pri vjazde do mesta (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Zvolen"],
-    suradnice: null,
+    suradnice: { lat: 48.5744, lng: 19.1353 },
   },
   {
     id: "28",
@@ -361,7 +366,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Banskej Bystrice (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Brezno"],
-    suradnice: null,
+    suradnice: { lat: 48.8044, lng: 19.6369 },
   },
   {
     id: "29",
@@ -371,7 +376,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Hlavný úsek cez mesto (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Dolný Kubín"],
-    suradnice: null,
+    suradnice: { lat: 49.2103, lng: 19.3014 },
   },
   {
     id: "30",
@@ -381,7 +386,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Nábrežná ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Prievidza"],
-    suradnice: null,
+    suradnice: { lat: 48.7733, lng: 18.6275 },
   },
   {
     id: "31",
@@ -391,7 +396,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Hlavný ťah, smer Handlová (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Žiar nad Hronom"],
-    suradnice: null,
+    suradnice: { lat: 48.59, lng: 18.8567 },
   },
   {
     id: "32",
@@ -401,7 +406,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Alžbetina ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Poprad"],
-    suradnice: null,
+    suradnice: { lat: 49.0614, lng: 20.2981 },
   },
   {
     id: "33",
@@ -411,7 +416,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Popradu (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Kežmarok"],
-    suradnice: null,
+    suradnice: { lat: 49.1353, lng: 20.4333 },
   },
   {
     id: "34",
@@ -421,7 +426,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Prešova (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Bardejov"],
-    suradnice: null,
+    suradnice: { lat: 49.2942, lng: 21.2747 },
   },
   {
     id: "35",
@@ -431,7 +436,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Duklianskych hrdinov (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Vranov nad Topľou"],
-    suradnice: null,
+    suradnice: { lat: 48.8878, lng: 21.6833 },
   },
   {
     id: "36",
@@ -441,7 +446,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Štefánikova ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Humenné"],
-    suradnice: null,
+    suradnice: { lat: 48.9356, lng: 21.9083 },
   },
   {
     id: "37",
@@ -451,7 +456,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Močarianska ulica (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Michalovce"],
-    suradnice: null,
+    suradnice: { lat: 48.7544, lng: 21.9197 },
   },
   {
     id: "38",
@@ -461,7 +466,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Levoče (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Spišská Nová Ves"],
-    suradnice: null,
+    suradnice: { lat: 48.9433, lng: 20.5647 },
   },
   {
     id: "39",
@@ -471,7 +476,7 @@ export const RADARY_DATA: RadarZaznam[] = [
     lokalita: "Smer od Sečoviec (rýchlosť)",
     typMerania: TypMerania.RYCHLOST,
     region: regionMapping["Trebišov"],
-    suradnice: null,
+    suradnice: { lat: 48.6256, lng: 21.7194 },
   },
 ];
 
