@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" rx="40" fill="#0a0a0a"/>
+  <circle cx="100" cy="100" r="60" fill="none" stroke="#ef4444" stroke-width="6" opacity="0.3"/>
+  <circle cx="100" cy="100" r="45" fill="none" stroke="#ef4444" stroke-width="6" opacity="0.6"/>
+  <circle cx="100" cy="100" r="30" fill="none" stroke="#ef4444" stroke-width="6"/>
+  <circle cx="100" cy="100" r="12" fill="#ef4444"/>
+  <path d="M100 40 L105 50 L95 50 Z" fill="#ffffff"/>
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">RADAR</text>
+</svg>

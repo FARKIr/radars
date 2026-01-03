@@ -1,0 +1,26 @@
+{
+  "name": "Radary - Mapa radarov na Slovensku",
+  "short_name": "Radary SK",
+  "description": "Komplexná mapa radarov a meraní rýchlosti na Slovensku. Plánujte trasu, filtrujte podľa regiónu a typu merania.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["navigation", "utilities", "travel"],
+  "lang": "sk",
+  "dir": "ltr"
+}

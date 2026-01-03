@@ -105,26 +105,28 @@ export default function Home() {
             <CollapsibleTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full justify-between h-auto py-3 px-4 bg-card hover:bg-accent"
+                className="w-full justify-between h-auto py-4 px-6 bg-card hover:bg-accent"
               >
-                <div className="flex items-center gap-2">
-                  <NavigationIcon className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">Plánovanie trasy</span>
+                <div className="flex items-center gap-3">
+                  <NavigationIcon className="h-6 w-6 text-primary" />
+                  <span className="font-semibold text-lg">
+                    Plánovanie trasy
+                  </span>
                   {(routeStart || routeEnd) && (
-                    <span className="text-xs text-muted-foreground ml-2">
+                    <span className="text-sm text-muted-foreground ml-2">
                       {routeStart} → {routeEnd}
                     </span>
                   )}
                 </div>
                 <ChevronDown
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-6 w-6 transition-transform ${
                     isRouteOpen ? "rotate-180" : ""
                   }`}
                 />
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-3">
-              <div className="bg-card border rounded-lg p-4">
+            <CollapsibleContent className="mt-4">
+              <div className="bg-card border rounded-lg p-6">
                 <RoutePanel
                   onRouteChange={handleRouteChange}
                   routeStart={routeStart}
@@ -141,21 +143,21 @@ export default function Home() {
             <CollapsibleTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full justify-between h-auto py-3 px-4 bg-card hover:bg-accent"
+                className="w-full justify-between h-auto py-4 px-6 bg-card hover:bg-accent"
               >
-                <div className="flex items-center gap-2">
-                  <Filter className="h-5 w-5 text-primary" />
-                  <span className="font-semibold">Filtrovanie</span>
+                <div className="flex items-center gap-3">
+                  <Filter className="h-6 w-6 text-primary" />
+                  <span className="font-semibold text-lg">Filtrovanie</span>
                 </div>
                 <ChevronDown
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-6 w-6 transition-transform ${
                     isFilterOpen ? "rotate-180" : ""
                   }`}
                 />
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-3">
-              <div className="bg-card border rounded-lg p-4">
+            <CollapsibleContent className="mt-4">
+              <div className="bg-card border rounded-lg p-6">
                 <FilterSidebar
                   filtre={filtre}
                   onFiltreChange={handleFiltreChange}
