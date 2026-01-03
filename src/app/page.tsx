@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const MapaRadary = dynamic(
   () => import("@/components/radary/MapaRadary").then((mod) => mod.MapaRadary),
@@ -53,12 +54,25 @@ export default function Home() {
 
   const triedyCiest = useMemo(() => getUnikatneTriedyCiest(), []);
 
+  const aktivneFiltre = useMemo(() => {
+    let count = 0;
+    if (filtre.region !== "all") count++;
+    if (filtre.typyMerania.length > 0) count++;
+    if (filtre.triedaCesty !== "all") count++;
+    if (filtre.vyhladavanie.trim()) count++;
+    return count;
+  }, [filtre]);
+
   const filtrovaneData = useMemo(() => {
     return aplikovatFiltreATriedenie(RADARY_DATA, filtre);
   }, [filtre]);
 
   const handleFiltreChange = (noveFiltreValue: Partial<FiltreStav>) => {
     setFiltre((prev) => ({ ...prev, ...noveFiltreValue }));
+  };
+
+  const clearAllFilters = () => {
+    setFiltre(INIT_FILTRE);
   };
 
   const handleRouteChange = (start: string | null, end: string | null) => {
@@ -87,28 +101,31 @@ export default function Home() {
             <CollapsibleTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full justify-between h-auto py-4 px-6 bg-card/80 backdrop-blur-sm hover:bg-card border-2 hover:border-primary/50 transition-all shadow-lg"
+                className="w-full justify-between h-auto py-2 sm:py-3 px-3 sm:px-4 bg-card/80 backdrop-blur-sm hover:bg-card border-2 hover:border-primary/50 transition-all shadow-lg"
               >
-                <div className="flex items-center gap-3">
-                  <NavigationIcon className="h-6 w-6 text-primary" />
-                  <span className="font-semibold text-lg">
+                <div className="flex items-center gap-2">
+                  <NavigationIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                  <span className="font-semibold text-sm sm:text-base">
                     Plánovanie trasy
                   </span>
                   {(routeStart || routeEnd) && (
-                    <span className="text-sm text-muted-foreground ml-2">
-                      {routeStart} → {routeEnd}
-                    </span>
+                    <Badge
+                      variant="secondary"
+                      className="text-xs px-1.5 py-0.5 h-auto"
+                    >
+                      Aktívna
+                    </Badge>
                   )}
                 </div>
                 <ChevronDown
-                  className={`h-6 w-6 transition-transform ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform ${
                     isRouteOpen ? "rotate-180" : ""
                   }`}
                 />
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-4">
-              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-2xl p-6 shadow-lg">
+            <CollapsibleContent className="mt-2">
+              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-lg p-2 sm:p-3 shadow-lg">
                 <RoutePanel
                   onRouteChange={handleRouteChange}
                   routeStart={routeStart}
@@ -125,21 +142,31 @@ export default function Home() {
             <CollapsibleTrigger asChild>
               <Button
                 variant="outline"
-                className="w-full justify-between h-auto py-4 px-6 bg-card/80 backdrop-blur-sm hover:bg-card border-2 hover:border-primary/50 transition-all shadow-lg"
+                className="w-full justify-between h-auto py-2 sm:py-3 px-3 sm:px-4 bg-card/80 backdrop-blur-sm hover:bg-card border-2 hover:border-primary/50 transition-all shadow-lg"
               >
-                <div className="flex items-center gap-3">
-                  <Filter className="h-6 w-6 text-primary" />
-                  <span className="font-semibold text-lg">Filtrovanie</span>
+                <div className="flex items-center gap-2">
+                  <Filter className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                  <span className="font-semibold text-sm sm:text-base">
+                    Filtrovanie
+                  </span>
+                  {aktivneFiltre > 0 && (
+                    <Badge
+                      variant="secondary"
+                      className="text-xs px-1.5 py-0.5 h-auto"
+                    >
+                      {aktivneFiltre}
+                    </Badge>
+                  )}
                 </div>
                 <ChevronDown
-                  className={`h-6 w-6 transition-transform ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform ${
                     isFilterOpen ? "rotate-180" : ""
                   }`}
                 />
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-4">
-              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-2xl p-6 shadow-lg">
+            <CollapsibleContent className="mt-2">
+              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-lg p-2 sm:p-3 shadow-lg">
                 <FilterSidebar
                   filtre={filtre}
                   onFiltreChange={handleFiltreChange}

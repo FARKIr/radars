@@ -57,6 +57,11 @@ export default function RadaryPage() {
     setFiltre((prev) => ({ ...prev, ...noveFiltreValue }));
   };
 
+  const clearAllFilters = () => {
+    setFiltre(INIT_FILTRE);
+    setSearchQuery("");
+  };
+
   const handleRadarClick = (radar: RadarZaznam) => {
     setDetailRadar(radar);
     setDetailOpen(true);
@@ -86,6 +91,16 @@ export default function RadaryPage() {
               <span className="text-muted-foreground hidden sm:inline">
                 zobrazených
               </span>
+              {aktivneFiltre > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearAllFilters}
+                  className="text-xs h-5 px-1.5 ml-1 hover:bg-destructive/10 hover:text-destructive"
+                >
+                  Zrušiť
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -118,8 +133,8 @@ export default function RadaryPage() {
                 />
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-2 sm:mt-3">
-              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-xl p-3 sm:p-4 shadow-lg">
+            <CollapsibleContent className="mt-2">
+              <div className="bg-card/80 backdrop-blur-sm border-2 rounded-lg p-2 sm:p-3 shadow-lg">
                 <FilterSidebar
                   filtre={filtre}
                   onFiltreChange={handleFiltreChange}

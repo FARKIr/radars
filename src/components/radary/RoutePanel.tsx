@@ -47,33 +47,33 @@ export function RoutePanel({
   };
 
   return (
-    <div className="space-y-3 sm:space-y-4">
-      <div className="space-y-2 sm:space-y-3">
+    <div className="space-y-2">
+      <div className="space-y-1">
         <div className="flex items-center gap-2">
-          <div className="bg-primary/10 p-1.5 sm:p-2 rounded-lg shrink-0">
-            <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+          <div className="bg-primary/10 p-1 rounded-lg shrink-0">
+            <MapPin className="h-3 w-3 text-primary" />
           </div>
           <Input
-            placeholder="Začiatočný bod (napr. Košice)"
+            placeholder="Začiatok (napr. Košice)"
             value={startInput}
             onChange={(e) => setStartInput(e.target.value)}
-            className="flex-1 h-9 sm:h-10 text-sm"
+            className="flex-1 h-8 text-xs"
           />
         </div>
 
-        <div className="flex items-center justify-center py-1 sm:py-2">
-          <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground" />
+        <div className="flex items-center justify-center py-0.5">
+          <ArrowRight className="h-3 w-3 text-muted-foreground" />
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="bg-destructive/10 p-1.5 sm:p-2 rounded-lg shrink-0">
-            <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-destructive" />
+          <div className="bg-destructive/10 p-1 rounded-lg shrink-0">
+            <MapPin className="h-3 w-3 text-destructive" />
           </div>
           <Input
-            placeholder="Cieľový bod (napr. Bratislava)"
+            placeholder="Cieľ (napr. Bratislava)"
             value={endInput}
             onChange={(e) => setEndInput(e.target.value)}
-            className="flex-1 h-9 sm:h-10 text-sm"
+            className="flex-1 h-8 text-xs"
           />
         </div>
       </div>
@@ -81,65 +81,60 @@ export function RoutePanel({
       <div className="flex gap-2">
         <Button
           onClick={handlePlanRoute}
-          className="flex-1 h-9 sm:h-10 text-sm"
+          className="flex-1 h-8 text-xs"
           disabled={!startInput || !endInput}
         >
-          <Navigation className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2" />
-          <span className="hidden sm:inline">Plánovať trasu</span>
-          <span className="sm:hidden">Plánovať</span>
+          <Navigation className="h-3 w-3 mr-1" />
+          Plánovať
         </Button>
         {(routeStart || routeEnd) && (
           <Button
             onClick={handleClearRoute}
             variant="outline"
             size="icon"
-            className="h-9 w-9 sm:h-10 sm:w-10"
+            className="h-8 w-8"
           >
-            <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <X className="h-3 w-3" />
           </Button>
         )}
       </div>
 
       {routeStart && routeEnd && (
-        <div className="pt-3 sm:pt-4 border-t space-y-2 sm:space-y-3 bg-muted rounded-lg p-3 sm:p-4">
+        <div className="pt-2 border-t space-y-1 bg-muted rounded-lg p-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs sm:text-sm font-medium text-foreground">
-              Aktívna trasa:
-            </span>
-            <Badge className="bg-primary text-primary-foreground text-[10px] sm:text-xs">
+            <span className="text-xs font-medium text-foreground">Trasa:</span>
+            <Badge className="bg-primary text-primary-foreground text-[10px]">
               Aktívna
             </Badge>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-foreground">
+          <div className="flex items-center gap-1 text-xs font-medium text-foreground">
             <span className="truncate">{routeStart}</span>
-            <ArrowRight className="h-3 w-3 shrink-0" />
+            <ArrowRight className="h-2.5 w-2.5 shrink-0" />
             <span className="truncate">{routeEnd}</span>
           </div>
           {routeDistance !== undefined && routeDuration !== undefined && (
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-background rounded p-2">
-                <div className="text-muted-foreground text-[10px] sm:text-xs">
+            <div className="grid grid-cols-2 gap-1 text-xs">
+              <div className="bg-background rounded p-1">
+                <div className="text-muted-foreground text-[9px]">
                   Vzdialenosť
                 </div>
-                <div className="font-semibold text-foreground text-xs sm:text-sm">
+                <div className="font-semibold text-foreground text-xs">
                   {(routeDistance / 1000).toFixed(1)} km
                 </div>
               </div>
-              <div className="bg-background rounded p-2">
-                <div className="text-muted-foreground text-[10px] sm:text-xs">
-                  Čas jazdy
-                </div>
-                <div className="font-semibold text-foreground text-xs sm:text-sm">
+              <div className="bg-background rounded p-1">
+                <div className="text-muted-foreground text-[9px]">Čas</div>
+                <div className="font-semibold text-foreground text-xs">
                   {Math.round(routeDuration / 60)} min
                 </div>
               </div>
             </div>
           )}
           {radarsOnRouteCount > 0 && (
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-amber-700 bg-amber-50 rounded-lg p-2">
-              <AlertCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-              <span className="text-[10px] sm:text-xs">
-                {radarsOnRouteCount} radarov v blízkosti trasy
+            <div className="flex items-center gap-1 text-xs text-amber-700 bg-amber-50 rounded p-1">
+              <AlertCircle className="h-3 w-3 shrink-0" />
+              <span className="text-[9px]">
+                {radarsOnRouteCount} radarov na trase
               </span>
             </div>
           )}
