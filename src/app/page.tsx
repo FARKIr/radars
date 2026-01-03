@@ -14,7 +14,20 @@ import { FilterSidebar } from "@/components/radary/FilterSidebar";
 import { ZoznamKariet } from "@/components/radary/ZoznamKariet";
 import { DetailRadaru } from "@/components/radary/DetailRadaru";
 import { RadarZaznam } from "@/data/radary";
-import { MapPin } from "lucide-react";
+import {
+  MapPin,
+  ChevronDown,
+  Filter,
+  Navigation as NavigationIcon,
+  Search,
+} from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const MapaRadary = dynamic(
   () => import("@/components/radary/MapaRadary").then((mod) => mod.MapaRadary),
@@ -41,12 +54,24 @@ export default function Home() {
   const [routeDuration, setRouteDuration] = useState<number | undefined>(
     undefined
   );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isRouteOpen, setIsRouteOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const triedyCiest = useMemo(() => getUnikatneTriedyCiest(), []);
 
   const filtrovaneData = useMemo(() => {
-    return aplikovatFiltreATriedenie(RADARY_DATA, filtre);
-  }, [filtre]);
+    const filtered = aplikovatFiltreATriedenie(RADARY_DATA, filtre);
+    if (!searchQuery.trim()) return filtered;
+
+    const query = searchQuery.toLowerCase();
+    return filtered.filter(
+      (radar) =>
+        radar.mesto.toLowerCase().includes(query) ||
+        radar.lokalita.toLowerCase().includes(query) ||
+        radar.cesta.toLowerCase().includes(query)
+    );
+  }, [filtre, searchQuery]);
 
   const handleFiltreChange = (noveFiltreValue: Partial<FiltreStav>) => {
     setFiltre((prev) => ({ ...prev, ...noveFiltreValue }));
@@ -68,68 +93,126 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full overflow-hidden bg-gray-50">
+    <div className="flex flex-col min-h-screen w-full bg-background">
       <HeaderNavigation
         totalRadars={RADARY_DATA.length}
         visibleRadars={filtrovaneData.length}
       />
 
-      <main className="flex-1 overflow-hidden">
-        <div className="h-full w-full max-w-[1920px] mx-auto">
-          <div className="flex flex-col xl:flex-row h-full">
-            <aside className="w-full xl:w-[320px] xl:min-w-[320px] flex-shrink-0 overflow-y-auto bg-gray-50 p-4 sm:p-6 space-y-4 sm:space-y-6 xl:border-r xl:border-gray-200">
-              <RoutePanel
-                onRouteChange={handleRouteChange}
-                routeStart={routeStart}
-                routeEnd={routeEnd}
-                radarsOnRouteCount={radarsOnRouteCount}
-                routeDistance={routeDistance}
-                routeDuration={routeDuration}
-              />
-              <FilterSidebar
-                filtre={filtre}
-                onFiltreChange={handleFiltreChange}
-                triedyCiest={triedyCiest}
-              />
-            </aside>
-
-            <section className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
-              <div className="bg-white rounded-lg shadow-card overflow-hidden h-[400px] sm:h-[500px] xl:h-[calc(60vh-2rem)]">
-                <MapaRadary
-                  data={filtrovaneData}
-                  onMarkerClick={handleRadarClick}
+      <main className="flex-1 w-full">
+        <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4">
+          <Collapsible open={isRouteOpen} onOpenChange={setIsRouteOpen}>
+            <CollapsibleTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full justify-between h-auto py-3 px-4 bg-card hover:bg-accent"
+              >
+                <div className="flex items-center gap-2">
+                  <NavigationIcon className="h-5 w-5 text-primary" />
+                  <span className="font-semibold">Plánovanie trasy</span>
+                  {(routeStart || routeEnd) && (
+                    <span className="text-xs text-muted-foreground ml-2">
+                      {routeStart} → {routeEnd}
+                    </span>
+                  )}
+                </div>
+                <ChevronDown
+                  className={`h-5 w-5 transition-transform ${
+                    isRouteOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-3">
+              <div className="bg-card border rounded-lg p-4">
+                <RoutePanel
+                  onRouteChange={handleRouteChange}
                   routeStart={routeStart}
                   routeEnd={routeEnd}
-                  onRouteInfoChange={(info) => {
-                    if (info) {
-                      setRadarsOnRouteCount(info.radarsCount);
-                      setRouteDistance(info.distance);
-                      setRouteDuration(info.duration);
-                    } else {
-                      setRadarsOnRouteCount(0);
-                      setRouteDistance(undefined);
-                      setRouteDuration(undefined);
-                    }
-                  }}
+                  radarsOnRouteCount={radarsOnRouteCount}
+                  routeDistance={routeDistance}
+                  routeDuration={routeDuration}
                 />
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+
+          <Collapsible open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+            <CollapsibleTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full justify-between h-auto py-3 px-4 bg-card hover:bg-accent"
+              >
+                <div className="flex items-center gap-2">
+                  <Filter className="h-5 w-5 text-primary" />
+                  <span className="font-semibold">Filtrovanie</span>
+                </div>
+                <ChevronDown
+                  className={`h-5 w-5 transition-transform ${
+                    isFilterOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="mt-3">
+              <div className="bg-card border rounded-lg p-4">
+                <FilterSidebar
+                  filtre={filtre}
+                  onFiltreChange={handleFiltreChange}
+                  triedyCiest={triedyCiest}
+                />
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+
+          <div className="bg-card rounded-lg shadow-card overflow-hidden h-[400px] sm:h-[500px] lg:h-[600px]">
+            <MapaRadary
+              data={filtrovaneData}
+              onMarkerClick={handleRadarClick}
+              routeStart={routeStart}
+              routeEnd={routeEnd}
+              onRouteInfoChange={(info) => {
+                if (info) {
+                  setRadarsOnRouteCount(info.radarsCount);
+                  setRouteDistance(info.distance);
+                  setRouteDuration(info.duration);
+                } else {
+                  setRadarsOnRouteCount(0);
+                  setRouteDistance(undefined);
+                  setRouteDuration(undefined);
+                }
+              }}
+            />
+          </div>
+
+          <div className="bg-card rounded-lg shadow-card p-4 sm:p-6">
+            <div className="flex flex-col gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold">
+                  Radary ({filtrovaneData.length})
+                </h2>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4" />
+                  <span>{filtrovaneData.length} lokalít</span>
+                </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow-card p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 sm:mb-6">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">
-                    Radary na trase ({filtrovaneData.length})
-                  </h2>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span>{filtrovaneData.length} lokalít</span>
-                  </div>
-                </div>
-                <ZoznamKariet
-                  data={filtrovaneData}
-                  onKartaClick={handleRadarClick}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Hľadať podľa mesta, lokality alebo cesty..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
                 />
               </div>
-            </section>
+            </div>
+
+            <ZoznamKariet
+              data={filtrovaneData}
+              onKartaClick={handleRadarClick}
+            />
           </div>
         </div>
       </main>

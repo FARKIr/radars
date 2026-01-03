@@ -2,6 +2,7 @@
 
 import { Navigation, MapPin, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface HeaderNavigationProps {
   totalRadars: number;
@@ -43,6 +44,8 @@ export function HeaderNavigation({
               </p>
             </div>
 
+            <ThemeToggle />
+
             <div className="h-8 sm:h-10 w-px bg-gray-300 hidden lg:block" />
 
             <div className="hidden lg:flex items-center gap-2">
@@ -55,9 +58,9 @@ export function HeaderNavigation({
               </Badge>
             </div>
 
-            <div className="flex lg:hidden items-center justify-center p-2 bg-amber-50 rounded-lg">
+            <div className="flex lg:hidden items-center justify-center p-2 bg-amber-50 dark:bg-amber-950 rounded-lg">
               <AlertCircle
-                className="h-5 w-5 text-amber-600"
+                className="h-5 w-5 text-amber-600 dark:text-amber-400"
                 aria-label="Dávajte pozor"
               />
             </div>
