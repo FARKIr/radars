@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { RADARY_DATA, getUnikatneTriedyCiest } from "@/data/radary";
 import {
   INIT_FILTRE,
   aplikovatFiltreATriedenie,
   FiltreStav,
 } from "@/lib/filtre";
-import { MapaRadary } from "@/components/radary/MapaRadary";
 import { HeaderNavigation } from "@/components/radary/HeaderNavigation";
 import { RoutePanel } from "@/components/radary/RoutePanel";
 import { FilterSidebar } from "@/components/radary/FilterSidebar";
@@ -15,6 +15,11 @@ import { ZoznamKariet } from "@/components/radary/ZoznamKariet";
 import { DetailRadaru } from "@/components/radary/DetailRadaru";
 import { RadarZaznam } from "@/data/radary";
 import { MapPin } from "lucide-react";
+
+const MapaRadary = dynamic(
+  () => import("@/components/radary/MapaRadary").then((mod) => mod.MapaRadary),
+  { ssr: false }
+);
 
 export default function Home() {
   const [filtre, setFiltre] = useState<FiltreStav>(INIT_FILTRE);
