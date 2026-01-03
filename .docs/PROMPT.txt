@@ -1,0 +1,174 @@
+Potrebujeme aby si napísal prompt pre vytvorenie takéhto aplikátov s interaktívnou hlavou, druhými prvkami, ktoré budú hodné, využiteľné, sortírovanie, hľadanie, žiadna databáza, React, X6, SharpCN, TileWind a všetko plne responsívne, moderné, záležité farby a s týmito dátami. Napíš PROMPT pre Jakovera, aby napísal tú aplikáciu.Zoznam miest a súradníc kde sa nachádzajú radary od nového roka ktoré vám zmerajú rýchlosť a dajú pokutu 
+Celkovo je 279 miest a ďalšie prinesiem keď budú potvrdené , zapni sledovať 
+
+Bratislava (I/61): Bajkalská × Trnavská cesta (semafor + rýchlosť)
+Bratislava (I/61): Stará senecká cesta, nadchod pre chodcov (rýchlosť)
+Svätý Jur (II/502): Križovatka Kačačince, smer Bratislava (rýchlosť)
+Banská Bystrica (I/66): Nábrežná komunikácia, oproti autobusovej stanici (rýchlosť)
+Žilina (I/60): Bernolákova ulica (rýchlosť)
+Lučenec (I/75): Časť Opatová, smer centrum (rýchlosť)
+Prešov (I/68): Ulica Pod Kalváriou, pri priechode pre chodcov (rýchlosť)
+Košice (II/547): Križovatka Hlinkova – Národná trieda (červená na semafore)
+Trenčín (I/61): Ul. gen. M. R. Štefánika, pri Merine (rýchlosť)
+Trnovec nad Váhom (I/75): Hlavný úsek cez obec (rýchlosť)
+Zlaté Moravce (II/511): Hlavný ťah cez mesto (rýchlosť)
+Vráble (I/51): Levická ulica (rýchlosť)
+Šaľa (I/75): Nitrianska ulica (rýchlosť)
+Komárno (I/63): Úsek pri 98,5 km (rýchlosť)
+Rimavská Sobota (I/16): Ožďany – Čierna Lúka (rýchlosť)
+Malacky (I/2): Smer od diaľnice D2 (rýchlosť)
+Dunajská Streda (I/63): Hlavný ťah pri nákupnej zóne (rýchlosť)
+Galanta (I/75): Obchvat mesta, križovatka s II/507 (rýchlosť)
+Hlohovec (II/513): Smer od Trakovíc (rýchlosť)
+Piešťany (I/61): Žilinská cesta (rýchlosť)
+Nové Zámky (I/64): Komárňanská cesta (semafor + rýchlosť)
+Levice (I/51): Kalnická cesta (rýchlosť)
+Púchov (I/49): Smer od Beluše (rýchlosť)
+Považská Bystrica (I/61): Centrum, pri hlavnej križovatke (semafor)
+Stredné Slovensko:
+Martin (I/18): Úsek pri vjazde od Vrútok (rýchlosť)
+Ružomberok (I/18): Nábrežie M. R. Štefánika (rýchlosť)
+Zvolen (I/16): Lučenecká cesta, pri vjazde do mesta (rýchlosť)
+Brezno (I/66): Smer od Banskej Bystrice (rýchlosť)
+Dolný Kubín (I/70): Hlavný úsek cez mesto (rýchlosť)
+Prievidza (I/64): Nábrežná ulica (rýchlosť)
+Žiar nad Hronom (I/65): Hlavný ťah, smer Handlová (rýchlosť)
+Východné Slovensko:
+Poprad (I/18): Alžbetina ulica (rýchlosť)
+Kežmarok (I/66): Smer od Popradu (rýchlosť)
+Bardejov (I/77): Smer od Prešova (rýchlosť)
+Vranov nad Topľou (I/18): Duklianskych hrdinov (rýchlosť)
+Humenné (I/74): Štefánikova ulica (rýchlosť)
+Michalovce (I/19): Močarianska ulica (rýchlosť)
+Spišská Nová Ves (II/536): Smer od Levoče (rýchlosť)
+Trebišov (I/79): Smer od Sečoviec (rýchlosť
+
+
+---------
+
+
+Si seniorný React/Next.js vývojár. Vytvor plne funkčnú, modernú, plne responzívnu web aplikáciu (bez databázy) na evidenciu a vyhľadávanie miest s radarami. Použi React + TypeScript, Tailwind CSS a shadcn/ui komponenty. Použi aj @antv/x6 na interaktívnu „mapovú hlavu“ (vizualizácia ako graf/uzly), nie skutočnú mapu. Nepoužívaj žiadne externé API. Dáta sú lokálne (statický súbor).
+
+CIEĽ
+- Jednostránková aplikácia: “Radary – zoznam miest a lokácií”
+- Dáta: zoznam položiek (mesto, cesta, popis miesta, typ merania).
+- Funkcie: rýchle vyhľadávanie, filtrovanie, triedenie, skupiny, detail karty, export, štatistiky.
+- UI: čisté, čitateľné farby, vysoký kontrast, moderné komponenty, bez preplácania.
+
+TECH STACK
+- Next.js (App Router) + React + TypeScript
+- Tailwind CSS
+- shadcn/ui (Button, Input, Badge, Card, Dialog, Sheet, Tabs, Table, DropdownMenu, Separator, Tooltip, Toast/Sonner)
+- @antv/x6 (graf pre „interaktívnu hlavu“)
+- Bez databázy, bez Supabase, bez backendu.
+
+DÁTA (vložiť do src/data/radary.ts ako konštantu)
+- Každý záznam musí mať: id, mesto, triedaCesty, cesta, lokalita, typMerania
+- typMerania enum: “rychlost”, “semafor”, “semafor_rychlost”, “cervena”
+- Ak v texte je “semafor + rýchlosť” -> semafor_rychlost
+- Ak je “červená na semafore” -> cervena
+- Ak je “semafor” -> semafor
+- Inak -> rychlost
+- „súradnice“ sú v tomto vstupe chýbajúce; do dát pridaj pole suradnice ako null a UI musí jasne ukázať, že nie sú dostupné.
+
+VSTUPNÉ DÁTA (parsovať ručne do objektov, nič nehádať, nič nevymýšľať):
+Bratislava (I/61): Bajkalská × Trnavská cesta (semafor + rýchlosť)
+Bratislava (I/61): Stará senecká cesta, nadchod pre chodcov (rýchlosť)
+Svätý Jur (II/502): Križovatka Kačačince, smer Bratislava (rýchlosť)
+Banská Bystrica (I/66): Nábrežná komunikácia, oproti autobusovej stanici (rýchlosť)
+Žilina (I/60): Bernolákova ulica (rýchlosť)
+Lučenec (I/75): Časť Opatová, smer centrum (rýchlosť)
+Prešov (I/68): Ulica Pod Kalváriou, pri priechode pre chodcov (rýchlosť)
+Košice (II/547): Križovatka Hlinkova – Národná trieda (červená na semafore)
+Trenčín (I/61): Ul. gen. M. R. Štefánika, pri Merine (rýchlosť)
+Trnovec nad Váhom (I/75): Hlavný úsek cez obec (rýchlosť)
+Zlaté Moravce (II/511): Hlavný ťah cez mesto (rýchlosť)
+Vráble (I/51): Levická ulica (rýchlosť)
+Šaľa (I/75): Nitrianska ulica (rýchlosť)
+Komárno (I/63): Úsek pri 98,5 km (rýchlosť)
+Rimavská Sobota (I/16): Ožďany – Čierna Lúka (rýchlosť)
+Malacky (I/2): Smer od diaľnice D2 (rýchlosť)
+Dunajská Streda (I/63): Hlavný ťah pri nákupnej zóne (rýchlosť)
+Galanta (I/75): Obchvat mesta, križovatka s II/507 (rýchlosť)
+Hlohovec (II/513): Smer od Trakovíc (rýchlosť)
+Piešťany (I/61): Žilinská cesta (rýchlosť)
+Nové Zámky (I/64): Komárňanská cesta (semafor + rýchlosť)
+Levice (I/51): Kalnická cesta (rýchlosť)
+Púchov (I/49): Smer od Beluše (rýchlosť)
+Považská Bystrica (I/61): Centrum, pri hlavnej križovatke (semafor)
+Martin (I/18): Úsek pri vjazde od Vrútok (rýchlosť)
+Ružomberok (I/18): Nábrežie M. R. Štefánika (rýchlosť)
+Zvolen (I/16): Lučenecká cesta, pri vjazde do mesta (rýchlosť)
+Brezno (I/66): Smer od Banskej Bystrice (rýchlosť)
+Dolný Kubín (I/70): Hlavný úsek cez mesto (rýchlosť)
+Prievidza (I/64): Nábrežná ulica (rýchlosť)
+Žiar nad Hronom (I/65): Hlavný ťah, smer Handlová (rýchlosť)
+Poprad (I/18): Alžbetina ulica (rýchlosť)
+Kežmarok (I/66): Smer od Popradu (rýchlosť)
+Bardejov (I/77): Smer od Prešova (rýchlosť)
+Vranov nad Topľou (I/18): Duklianskych hrdinov (rýchlosť)
+Humenné (I/74): Štefánikova ulica (rýchlosť)
+Michalovce (I/19): Močarianska ulica (rýchlosť)
+Spišská Nová Ves (II/536): Smer od Levoče (rýchlosť)
+Trebišov (I/79): Smer od Sečoviec (rýchlosť)
+
+POŽIADAVKY NA UI/UX
+1) Horný „hero header“ (interaktívna hlava):
+- Panel s @antv/x6 grafom.
+- Uzly: kraje/skupiny (Západ, Stred, Východ) + mestá ako uzly.
+- Klik na uzol mesta nastaví filter “mesto”.
+- Hover zobrazi tooltip s počtom záznamov a typmi merania.
+- Musí fungovať na mobile (zmenšený režim: horizontálny scroll, alebo tlačidlo “Zväčšiť” v Sheet/Dialog).
+
+2) Ovládací panel filtrov:
+- Vyhľadávanie (fulltext: mesto, cesta, lokalita, typ).
+- Filtre: región (Západ/Stred/Východ), triedaCesty (I/xx, II/xxx), typMerania (multi-select).
+- Prepínač zobrazenia: “Karty” / “Tabuľka”.
+- Triedenie: podľa mesta, podľa triedy cesty, podľa typu.
+
+3) Výpis:
+- Karty: výrazné Badge pre typ, mesto veľkým, cesta a lokalita pod tým.
+- Tabuľka: stĺpce mesto, triedaCesty, lokalita, typ.
+- Klik na položku otvorí detail (Dialog/Sheet): všetky polia + “Kopírovať text” (to clipboard) + “Kopírovať JSON”.
+
+4) Súhrny a štatistiky:
+- Počet záznamov po filtroch.
+- Počty podľa typMerania (mini karty).
+- Počty podľa regiónu (mini karty).
+
+5) Export:
+- Tlačidlo “Export CSV” (client-side generovanie).
+- Tlačidlo “Export JSON”.
+
+6) Prístupnosť a kvalita:
+- Klávesové ovládanie, focus ring, kontrast.
+- Bez console.log v produkcii.
+- Bez magických čísel v logike (konštanty).
+- Priebežne typovo striktne (žiadne any/as/unknown).
+- Čistá štruktúra komponentov, bez duplicít.
+
+ARCHITEKTÚRA SÚBOROV
+- src/app/page.tsx – zostavenie stránky
+- src/data/radary.ts – dáta + typy + enumy
+- src/lib/filtre.ts – filtrovanie, triedenie, fulltext
+- src/components/radary/InteraktivnaHlavaX6.tsx
+- src/components/radary/PanelFiltrov.tsx
+- src/components/radary/ZoznamKariet.tsx
+- src/components/radary/TabulkaRadary.tsx
+- src/components/radary/DetailRadaru.tsx
+- src/components/radary/SummaryStatistiky.tsx
+- src/components/radary/ExportTlacidla.tsx
+
+REGIÓNY (nemapovať podľa GPS; len podľa zoznamu v texte)
+- Západ: Bratislava, Svätý Jur, Trenčín, Trnovec nad Váhom, Zlaté Moravce, Vráble, Šaľa, Komárno, Malacky, Dunajská Streda, Galanta, Hlohovec, Piešťany, Nové Zámky, Levice, Púchov, Považská Bystrica, Žilina
+- Stred: Banská Bystrica, Lučenec, Rimavská Sobota, Martin, Ružomberok, Zvolen, Brezno, Dolný Kubín, Prievidza, Žiar nad Hronom
+- Východ: Prešov, Košice, Poprad, Kežmarok, Bardejov, Vranov nad Topľou, Humenné, Michalovce, Spišská Nová Ves, Trebišov
+
+DODATOČNÉ
+- V hlavičke stránky zobraz: “Celkovo: 279 miest (zatiaľ zadané: N)” – N je počet položiek v datasete.
+- Pridaj indikátor “sledovanie zoznamu” ako UI stav (lokálne), ktorý len prepína badge “Sledované” v hlavičke (žiadne notifikácie, žiadny backend).
+
+VÝSTUP
+- Dodaj kompletný kód všetkých súborov.
+- Musí to buildnúť a bežať bez ďalších zásahov.
+- Žiadne zbytočné texty okolo, len riešenie.
