@@ -1,6 +1,6 @@
 # Radary SK - Plánovanie trás s radarmi
 
-Moderná Next.js aplikácia s Google Maps pre plánovanie trás a zobrazenie radarov na Slovensku.
+Moderná Next.js aplikácia s OpenStreetMap pre plánovanie trás a zobrazenie radarov na Slovensku.
 
 ## Technológie
 
@@ -8,15 +8,18 @@ Moderná Next.js aplikácia s Google Maps pre plánovanie trás a zobrazenie rad
 - **React 18** + **TypeScript**
 - **Tailwind CSS** - styling
 - **shadcn/ui** - moderné UI komponenty
-- **Google Maps API** (@react-google-maps/api) - interaktívna mapa
+- **OpenStreetMap + Leaflet** (react-leaflet) - interaktívna mapa
+- **OSRM** - routing bez API kľúča
+- **Nominatim** - geokódovanie bez API kľúča
 - **Lucide React** - ikony
 - **Sonner** - notifikácie
 
 ## Funkcie
 
-- ✅ **Google Maps integrácia** - plnohodnotná mapa s GPS súradnicami
-- ✅ **Route planning** - plánovanie trás medzi mestami (default: Košice → Bratislava)
-- ✅ **Zvýraznenie radarov na trase** - radary v blízkosti trasy sú zvýraznené
+- ✅ **OpenStreetMap integrácia** - plnohodnotná mapa s GPS súradnicami (bez API kľúča)
+- ✅ **Route planning** - plánovanie trás medzi mestami pomocou OSRM (default: Košice → Bratislava)
+- ✅ **Zvýraznenie radarov na trase** - radary v blízkosti trasy (200m) sú zvýraznené
+- ✅ **Info o trase** - vzdialenosť, čas jazdy, počet radarov na trase
 - ✅ **Filtrovanie** - podľa regiónu, triedy cesty, typu merania
 - ✅ **Vyhľadávanie** - fulltext vyhľadávanie miest a lokalít
 - ✅ **Detailný pohľad** - GPS súradnice, kopírovanie údajov
@@ -30,10 +33,7 @@ Moderná Next.js aplikácia s Google Maps pre plánovanie trás a zobrazenie rad
 # 1. Nainštalovať závislosti
 npm install
 
-# 2. Pridať Google Maps API kľúč do .env.local
-# NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
-
-# 3. Spustiť vývojový server
+# 2. Spustiť vývojový server
 npm run dev
 
 # Build pre produkciu
@@ -45,14 +45,13 @@ npm start
 
 Aplikácia bude dostupná na `http://localhost:3000`
 
-### Google Maps API kľúč
+### Mapové služby (100% bezplatné)
 
-Pre fungovanie mapy potrebujete Google Maps API kľúč:
+Aplikácia využíva nasledujúce bezplatné služby **bez potreby API kľúčov**:
 
-1. Vytvorte projekt na [Google Cloud Console](https://console.cloud.google.com)
-2. Aktivujte **Maps JavaScript API** a **Directions API**
-3. Vytvorte API kľúč
-4. Pridajte ho do `.env.local` súboru
+- **Mapy**: [OpenStreetMap](https://www.openstreetmap.org/) - dlaždice máp
+- **Routing**: [OSRM](https://project-osrm.org/) - výpočet trás (public endpoint)
+- **Geokódovanie**: [Nominatim](https://nominatim.openstreetmap.org/) - konverzia adries na GPS súradnice
 
 ## Štruktúra projektu
 
@@ -65,7 +64,7 @@ src/
 ├── components/
 │   ├── ui/                # shadcn/ui komponenty
 │   └── radary/
-│       ├── GoogleMapRadary.tsx      # Google Maps komponenta
+│       ├── MapaRadary.tsx           # Leaflet/OSM mapa
 │       ├── HeaderNavigation.tsx     # Header s prehľadom
 │       ├── RoutePanel.tsx           # Plánovanie trás
 │       ├── FilterSidebar.tsx        # Bočný panel filtrov
@@ -75,6 +74,7 @@ src/
 │   └── radary.ts          # 39 radarov s GPS súradnicami
 └── lib/
     ├── filtre.ts          # Filtrovacie funkcie
+    ├── mapa.ts            # Geokódovanie, routing, vzdialenosti
     └── utils.ts           # Utility funkcie
 ```
 

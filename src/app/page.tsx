@@ -7,7 +7,7 @@ import {
   aplikovatFiltreATriedenie,
   FiltreStav,
 } from "@/lib/filtre";
-import { GoogleMapRadary } from "@/components/radary/GoogleMapRadary";
+import { MapaRadary } from "@/components/radary/MapaRadary";
 import { HeaderNavigation } from "@/components/radary/HeaderNavigation";
 import { RoutePanel } from "@/components/radary/RoutePanel";
 import { FilterSidebar } from "@/components/radary/FilterSidebar";
@@ -22,6 +22,13 @@ export default function Home() {
   const [detailOpen, setDetailOpen] = useState(false);
   const [routeStart, setRouteStart] = useState<string | null>("Košice");
   const [routeEnd, setRouteEnd] = useState<string | null>("Bratislava");
+  const [radarsOnRouteCount, setRadarsOnRouteCount] = useState(0);
+  const [routeDistance, setRouteDistance] = useState<number | undefined>(
+    undefined
+  );
+  const [routeDuration, setRouteDuration] = useState<number | undefined>(
+    undefined
+  );
 
   const triedyCiest = useMemo(() => getUnikatneTriedyCiest(), []);
 
@@ -41,6 +48,11 @@ export default function Home() {
   const handleRouteChange = (start: string | null, end: string | null) => {
     setRouteStart(start);
     setRouteEnd(end);
+    if (!start || !end) {
+      setRadarsOnRouteCount(0);
+      setRouteDistance(undefined);
+      setRouteDuration(undefined);
+    }
   };
 
   return (
@@ -58,6 +70,9 @@ export default function Home() {
                 onRouteChange={handleRouteChange}
                 routeStart={routeStart}
                 routeEnd={routeEnd}
+                radarsOnRouteCount={radarsOnRouteCount}
+                routeDistance={routeDistance}
+                routeDuration={routeDuration}
               />
               <FilterSidebar
                 filtre={filtre}
@@ -68,11 +83,22 @@ export default function Home() {
 
             <section className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
               <div className="bg-white rounded-lg shadow-card overflow-hidden h-[400px] sm:h-[500px] xl:h-[calc(60vh-2rem)]">
-                <GoogleMapRadary
+                <MapaRadary
                   data={filtrovaneData}
                   onMarkerClick={handleRadarClick}
                   routeStart={routeStart}
                   routeEnd={routeEnd}
+                  onRouteInfoChange={(info) => {
+                    if (info) {
+                      setRadarsOnRouteCount(info.radarsCount);
+                      setRouteDistance(info.distance);
+                      setRouteDuration(info.duration);
+                    } else {
+                      setRadarsOnRouteCount(0);
+                      setRouteDistance(undefined);
+                      setRouteDuration(undefined);
+                    }
+                  }}
                 />
               </div>
 

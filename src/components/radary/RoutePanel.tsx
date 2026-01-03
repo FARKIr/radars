@@ -6,18 +6,23 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Navigation, MapPin, ArrowRight, X } from "lucide-react";
-import { RADARY_DATA } from "@/data/radary";
 
 interface RoutePanelProps {
   onRouteChange: (start: string | null, end: string | null) => void;
   routeStart: string | null;
   routeEnd: string | null;
+  radarsOnRouteCount?: number;
+  routeDistance?: number;
+  routeDuration?: number;
 }
 
 export function RoutePanel({
   onRouteChange,
   routeStart,
   routeEnd,
+  radarsOnRouteCount = 0,
+  routeDistance,
+  routeDuration,
 }: RoutePanelProps) {
   const [startInput, setStartInput] = useState(routeStart || "Košice");
   const [endInput, setEndInput] = useState(routeEnd || "Bratislava");
@@ -31,15 +36,6 @@ export function RoutePanel({
     setEndInput("");
     onRouteChange(null, null);
   };
-
-  const radarsOnRouteCount =
-    routeStart && routeEnd
-      ? RADARY_DATA.filter(
-          (r) =>
-            r.mesto.toLowerCase().includes(startInput.toLowerCase()) ||
-            r.mesto.toLowerCase().includes(endInput.toLowerCase())
-        ).length
-      : 0;
 
   return (
     <Card className="sticky top-24">
@@ -110,11 +106,27 @@ export function RoutePanel({
               <ArrowRight className="h-3 w-3 shrink-0" />
               <span className="truncate">{routeEnd}</span>
             </div>
+            {routeDistance !== undefined && routeDuration !== undefined && (
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="bg-white rounded p-2">
+                  <div className="text-gray-500">Vzdialenosť</div>
+                  <div className="font-semibold text-blue-900">
+                    {(routeDistance / 1000).toFixed(1)} km
+                  </div>
+                </div>
+                <div className="bg-white rounded p-2">
+                  <div className="text-gray-500">Čas jazdy</div>
+                  <div className="font-semibold text-blue-900">
+                    {Math.round(routeDuration / 60)} min
+                  </div>
+                </div>
+              </div>
+            )}
             {radarsOnRouteCount > 0 && (
               <div className="flex items-center gap-2 text-sm text-amber-700 bg-amber-50 rounded-lg p-2">
                 <AlertCircle className="h-4 w-4 shrink-0" />
                 <span className="text-xs">
-                  ~{radarsOnRouteCount} radarov v blízkosti trasy
+                  {radarsOnRouteCount} radarov v blízkosti trasy
                 </span>
               </div>
             )}
