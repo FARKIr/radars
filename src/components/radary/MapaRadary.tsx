@@ -9,6 +9,7 @@ import {
   Polyline,
 } from "react-leaflet";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { RadarZaznam, TypMerania, Suradnice } from "@/data/radary";
 import { Card } from "@/components/ui/card";
 import {

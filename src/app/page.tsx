@@ -18,7 +18,14 @@ import { MapPin } from "lucide-react";
 
 const MapaRadary = dynamic(
   () => import("@/components/radary/MapaRadary").then((mod) => mod.MapaRadary),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center bg-gray-100">
+        <div className="text-gray-500">Načítava sa mapa...</div>
+      </div>
+    ),
+  }
 );
 
 export default function Home() {
