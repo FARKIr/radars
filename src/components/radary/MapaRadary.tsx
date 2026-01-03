@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -83,12 +83,14 @@ export function MapaRadary({
   } | null>(null);
   const [radarsOnRoute, setRadarsOnRoute] = useState<Set<string>>(new Set());
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
+  const toastShownRef = useRef<string>("");
 
   useEffect(() => {
     if (!routeStart || !routeEnd) {
       setRouteCoordinates([]);
       setRouteInfo(null);
       setRadarsOnRoute(new Set());
+      toastShownRef.current = "";
       onRouteInfoChange?.(null);
       return;
     }
@@ -157,11 +159,15 @@ export function MapaRadary({
           duration: route.duration,
         });
 
-        toast.success(
-          `Trasa vypočítaná: ${(route.distance / 1000).toFixed(
-            1
-          )} km, ${Math.round(route.duration / 60)} min`
-        );
+        const routeKey = `${routeStart}-${routeEnd}-${route.distance}-${route.duration}`;
+        if (toastShownRef.current !== routeKey) {
+          toast.success(
+            `Trasa vypočítaná: ${(route.distance / 1000).toFixed(
+              1
+            )} km, ${Math.round(route.duration / 60)} min`
+          );
+          toastShownRef.current = routeKey;
+        }
       } catch (error) {
         toast.error("Chyba pri výpočte trasy");
         setRouteCoordinates([]);

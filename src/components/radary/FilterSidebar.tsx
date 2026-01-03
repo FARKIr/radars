@@ -111,24 +111,26 @@ export function FilterSidebar({
 
       <div className="space-y-2 sm:space-y-3">
         <label className="text-xs sm:text-sm font-medium">Trieda cesty</label>
-        <div className="max-h-40 sm:max-h-48 overflow-y-auto space-y-1.5 pr-1 sm:pr-2">
-          <Badge
-            variant={filtre.triedaCesty === "all" ? "default" : "outline"}
-            className="cursor-pointer justify-center text-xs sm:text-sm w-full py-1.5 sm:py-2"
-            onClick={() => onFiltreChange({ triedaCesty: "all" })}
-          >
-            Všetky
-          </Badge>
-          {triedyCiest.map((trieda) => (
+        <div className="max-h-32 sm:max-h-36 overflow-y-auto space-y-1 pr-1">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
             <Badge
-              key={trieda}
-              variant={filtre.triedaCesty === trieda ? "default" : "outline"}
-              className="cursor-pointer justify-center text-xs sm:text-sm w-full py-1.5 sm:py-2"
-              onClick={() => onFiltreChange({ triedaCesty: trieda })}
+              variant={filtre.triedaCesty === "all" ? "default" : "outline"}
+              className="cursor-pointer justify-center text-xs py-1 px-2 h-auto"
+              onClick={() => onFiltreChange({ triedaCesty: "all" })}
             >
-              {trieda}
+              Všetky
             </Badge>
-          ))}
+            {triedyCiest.map((trieda) => (
+              <Badge
+                key={trieda}
+                variant={filtre.triedaCesty === trieda ? "default" : "outline"}
+                className="cursor-pointer justify-center text-xs py-1 px-2 h-auto"
+                onClick={() => onFiltreChange({ triedaCesty: trieda })}
+              >
+                {trieda}
+              </Badge>
+            ))}
+          </div>
         </div>
       </div>
     </div>
