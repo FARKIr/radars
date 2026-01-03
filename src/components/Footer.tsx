@@ -19,7 +19,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t bg-background">
+    <footer className="border-t bg-gradient-to-br from-background to-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="space-y-4">

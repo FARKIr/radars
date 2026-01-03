@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { Button } from "./ui/button";
-import { Menu, X, Home, Info, Mail, Newspaper } from "lucide-react";
+import { Menu, X, Home, Info, Mail, Newspaper, Radio } from "lucide-react";
 import { useState } from "react";
 import {
   Sheet,
@@ -12,9 +12,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navigation = [
   { name: "Domov", href: "/", icon: Home },
+  { name: "Všetky radary", href: "/radary", icon: Radio },
   { name: "O aplikácii", href: "/o-aplikacii", icon: Info },
   { name: "Novinky", href: "/novinky", icon: Newspaper },
   { name: "Kontakt", href: "/kontakt", icon: Mail },
@@ -24,7 +26,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md shadow-sm supports-[backdrop-filter]:bg-background/80">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
@@ -32,20 +34,21 @@ export function Header() {
           </Link>
         </div>
 
-        <div className="hidden lg:flex lg:gap-x-8">
+        <div className="hidden lg:flex lg:gap-x-6">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="flex items-center gap-2 text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-sm font-semibold leading-6 text-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-all"
             >
               <item.icon className="h-4 w-4" />
               {item.name}
             </Link>
           ))}
+          <ThemeToggle />
         </div>
 
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden gap-2">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -71,6 +74,12 @@ export function Header() {
                       {item.name}
                     </Link>
                   ))}
+                  <div className="pt-4 border-t">
+                    <div className="flex items-center justify-between px-3 py-2">
+                      <span className="text-sm font-semibold">Téma</span>
+                      <ThemeToggle />
+                    </div>
+                  </div>
                 </div>
               </div>
             </SheetContent>
