@@ -8,7 +8,6 @@ import {
   aplikovatFiltreATriedenie,
   FiltreStav,
 } from "@/lib/filtre";
-import { HeaderNavigation } from "@/components/radary/HeaderNavigation";
 import { RoutePanel } from "@/components/radary/RoutePanel";
 import { FilterSidebar } from "@/components/radary/FilterSidebar";
 import { ZoznamKariet } from "@/components/radary/ZoznamKariet";
@@ -93,12 +92,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-background">
-      <HeaderNavigation
-        totalRadars={RADARY_DATA.length}
-        visibleRadars={filtrovaneData.length}
-      />
-
+    <div className="flex flex-col w-full bg-background">
       <main className="flex-1 w-full">
         <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4">
           <Collapsible open={isRouteOpen} onOpenChange={setIsRouteOpen}>
